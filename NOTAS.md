@@ -12,6 +12,8 @@ Despues de terminar un tema (practica).
 
 Subir material antes y hacer consulta despues.
 
+Pedir dar sucesiones e induccion cuanto antes.
+
 ## Temas y propuesta
 
 ### Logica y Conjuntos
@@ -46,16 +48,30 @@ p :: u -> Bool -- u es conjunto universal
 u representa al conjunto universal
 -> Bool quiere decir que devolveremos un valor de verdad, un booleano, es decir que puede ser True o False. (En R-Info lo llamamos V y F)
 
-Para definir, e.g., la funcion proposional `r(x) = x > 0` lo hacemos de la siguiente forma:
+Para definir, e.g., la funcion proposional `r(x): x es mayor que 0` lo hacemos de la siguiente forma:
 
 ```haskell
 r :: Int -> Bool
 r x = x > 0
 
--- donde x es cualquier valor perteneciente a los Enteros ,(Z), (Int).
+-- donde x es cualquier valor perteneciente a los Enteros, (Z), (Int).
 ```
 
 En las definicion anterior se pueden observar aspectos de haskell que iremos profundizando a medida que transcurre la materia.
 
+**MOSTRAR COMO SON LOS OPERADORES BOOLEANOS EN HASKELL**
 
+#### Problemas
 
+```
+p(n): n es par
+q(x): x es divisible por 2
+r(x): x es igual 0
+c(x): x es la letra 'c'
+d(y): y no es la letra 'c'
+t(x, y): la suma entre x e y es igual a cero
+w(a, b): a es el opuesto de b
+h(n, m): n es igual a 0 y m no es la letra 'c'
+```
+
+**RESOLVER EJERCICIOS**
