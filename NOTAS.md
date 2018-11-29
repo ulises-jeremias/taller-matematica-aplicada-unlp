@@ -72,6 +72,7 @@ d(y): y no es la letra 'c'
 t(x, y): la suma entre x e y es igual a cero
 w(a, b): a es el opuesto de b
 h(n, m): n es igual a 0 y m no es la letra 'c'
+a(x) : 'x' es la letra 'x' #Esta es una función constante
 ```
 
 **RESOLVER EJERCICIOS**
