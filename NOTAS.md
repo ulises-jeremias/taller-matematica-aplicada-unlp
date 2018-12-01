@@ -79,6 +79,7 @@ a(x) : 'x' es la letra 'x' #Esta es una función constante
 
 ```haskell
 divide :: (Int, Int) -> Bool
+divide d x = x `mod` d == 0
 
 esPar :: Int -> Bool
 esPar x = divide (2, x)
