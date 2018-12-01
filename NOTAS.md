@@ -75,4 +75,26 @@ h(n, m): n es igual a 0 y m no es la letra 'c'
 a(x) : 'x' es la letra 'x' #Esta es una función constante
 ```
 
-**RESOLVER EJERCICIOS**
+**SOLUCIONES**
+
+```haskell
+divide :: (Int, Int) -> Bool
+
+esPar :: Int -> Bool
+esPar x = divide (2, x)
+
+p :: Int -> Bool
+p n = esPar n
+
+q :: Int -> Bool
+q x = divide (2, x)
+
+r :: Int -> Bool
+r x = x == 0
+
+c :: Char -> Bool
+c x = x == 'c
+
+d :: Char -> Bool
+d x = not (c x)
+```
