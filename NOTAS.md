@@ -18,7 +18,26 @@ Pedir dar sucesiones e induccion cuanto antes.
 
 ### Logica
 
-**Utilizar sección 1.1 del libro de Algebra y Matemática Discreta de Liliana Alcon.**
+**Utilizar sección 1.1 del libro de Algebra y Matemática Discreta de Liliana Alcon. Hasta operadores lógicos. Un par de ejemplos**
+
+Una proposición es una oración declamativa a la cual se le puede asignar un valor
+verdad: verdadera (V) o falsa (F). Las proposiciones serán simbolizadas mediantes
+letras minúsculas: p, q, r, etc.
+
+**Problemas: (Ejericios para resolver entre todes. Luego mostrar las respuestas correctas)**
+
+1. Determinar si los siguientes enunciados son proposiciones.
+a) Siete es mayor que doce.
+b) Si 6 > 4 entonces 6 > 2
+c) Ella es inteligente.
+d ) Quı́en es?
+e) En otros planetas del sistema solar hay diversos tipos de seres vivos
+f ) De 2 + 3 ≥ 5 + 4 se deduce 3 > 4.
+g) Estudiaré música o canto.
+h) Cualquier rectángulo tiene cuatro lados.
+i ) x > 2.
+
+
 
 > Definir funcion proposicional
 
