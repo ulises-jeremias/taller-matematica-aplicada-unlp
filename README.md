@@ -16,6 +16,8 @@ Subir material antes y hacer consulta despues.
 
 Pedir dar sucesiones e induccion cuanto antes.
 
+**PASAR LISTA para ver quienes van**
+
 ## Temas Propuestos
 
 -   [Lógica](./Temas/0-LOGICA.md)
