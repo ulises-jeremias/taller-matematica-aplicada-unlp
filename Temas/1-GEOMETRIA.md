@@ -22,8 +22,20 @@ r :: Int -> Bool
 r x = x > 0
 ```
 
-En este caso estamos diciendo que r es una función que dado un x entero devuelve un booleano que es verdadero, si x > 0. 
+En este caso estamos diciendo que `r` es una función que dado un `x` entero devuelve un booleano que es verdadero, si `x > 0`. 
 
-¿Cómo usamos esta función? La aplicamos. La aplicación es una de las operaciones que podemos realizar con una función. En haskell lo expresamos con un espacio ' '. Por ejemplo
+**¿Cómo usamos esta función?** La aplicamos. La aplicación es una de las operaciones que podemos realizar con una función. En haskell lo expresamos con un espacio `' '`. Por ejemplo
 
+```haskell
+r 2
+-- True
+```
+
+En el ejemplo anterior, aplicamos la función `r` a un valor entero, `2`, obteniendo un valor de salida booleano, `True`.
+
+En terminos generales, podemos aplicar una función cualquiera a un valor cuyo **Tipo** sea el mismo que el **tipo de entrada** de la función. Y el resultado de la aplicación tendrá el tipo de salida de la misma. En el ejemplo anterior, el tipo de `r 2` es:
+
+```haskell
+r 2 :: Bool
+```
 
