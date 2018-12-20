@@ -26,18 +26,17 @@ letras minúsculas: p, q, r, etc.
 
 **Problemas: (Ejericios para resolver entre todes. Luego mostrar las respuestas correctas)**
 
-1. Determinar si los siguientes enunciados son proposiciones.
-a) Siete es mayor que doce.
-b) Si 6 > 4 entonces 6 > 2
-c) Ella es inteligente.
-d ) Quı́en es?
-e) En otros planetas del sistema solar hay diversos tipos de seres vivos
-f ) De 2 + 3 ≥ 5 + 4 se deduce 3 > 4.
-g) Estudiaré música o canto.
-h) Cualquier rectángulo tiene cuatro lados.
-i ) x > 2.
+- Determinar si los siguientes enunciados son proposiciones.
 
-
+  - Siete es mayor que doce.
+  - Si 6 > 4 entonces 6 > 2
+  - Ella es inteligente.
+  - Quı́en es?
+  - En otros planetas del sistema solar hay diversos tipos de seres vivos
+  - De 2 + 3 ≥ 5 + 4 se deduce 3 > 4.
+  - Estudiaré música o canto.
+  - Cualquier rectángulo tiene cuatro lados.
+  - x > 2.
 
 > Definir funcion proposicional
 
