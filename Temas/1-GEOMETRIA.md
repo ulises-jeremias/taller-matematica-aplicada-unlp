@@ -41,4 +41,8 @@ r 2 :: Bool
 
 * * *
 
-Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el tipo de las funciones. Sim embargo, en el ejemplo anterior, v 
+Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el tipo de las funciones. Sim embargo, en el ejemplo anterior, utilizamos `::` para indicar el tipo de `r 2`. Qué pasó? **INSERTE MEME AQUÍ**
+
+Esto sucede ya que en Haskell, al igual que en matemáticas, no diferenciamos lo que son funciones de lo que son los valores. Es decir, una función es un valor que, al igual que el resto de los valores que vemos, _tiene un **tipo**_. En este caso, cuando indicamos `r :: Int -> Bool` estamos diciendo que el tipo de `r` es `Int -> Bool`.
+
+Más adelante vamos a ver como podemos sacarle el jugo a esta hermosa propiedad.
