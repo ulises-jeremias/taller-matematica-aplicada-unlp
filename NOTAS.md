@@ -16,7 +16,7 @@ Pedir dar sucesiones e induccion cuanto antes.
 
 ## Temas y propuesta
 
-### Logica y Conjuntos
+### Logica
 
 > Definir funcion proposicional
 
