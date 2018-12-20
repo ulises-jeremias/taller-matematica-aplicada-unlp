@@ -39,3 +39,6 @@ En terminos generales, podemos aplicar una función cualquiera a un valor cuyo *
 r 2 :: Bool
 ```
 
+* * *
+
+Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el tipo de las funciones. Sim embargo, en el ejemplo anterior, v 
