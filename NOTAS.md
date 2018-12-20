@@ -18,6 +18,8 @@ Pedir dar sucesiones e induccion cuanto antes.
 
 ### Logica
 
+**Utilizar sección 1.1 del libro de Algebra y Matemática Discreta de Liliana Alcon.**
+
 > Definir funcion proposicional
 
 Dada una variable x perteneciente al conjunto universal, se define una **función proposicional**, _p_, en la variable x, como un proceso
