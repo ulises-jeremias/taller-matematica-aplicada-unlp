@@ -1,3 +1,5 @@
+# AMI
+
 ## Organizacion
 
 Somos 2 confirmados, 1 mas puede ser.
@@ -13,3 +15,14 @@ Despues de terminar un tema (practica).
 Subir material antes y hacer consulta despues.
 
 Pedir dar sucesiones e induccion cuanto antes.
+
+## Temas Propuestos
+
+-   [Lógica](./Temas/0-LOGICA.md)
+-   Geometría
+-   Conjuntos y Funciones
+-   Álgebra de Boole
+-   Sucesiones e Inducción
+-   Combinatoria
+-   Matrices
+-   Sistemas de ecuaciones lineales
