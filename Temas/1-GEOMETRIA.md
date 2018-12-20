@@ -24,7 +24,7 @@ r x = x > 0
 
 En este caso estamos diciendo que `r` es una función que dado un `x` entero devuelve un booleano que es verdadero, si `x > 0`. 
 
-**¿Cómo usamos esta función?** La aplicamos. La aplicación es una de las operaciones que podemos realizar con una función. En haskell lo expresamos con un espacio `' '`. Por ejemplo
+**¿Cómo usamos esta función?** La aplicamos. La aplicación es una de las operaciones que podemos realizar con una función. En haskell lo expresamos con un espacio `' '`. Por ejemplo, lo que en matemática haríamos de esta forma, `r(2)`, en haskell es como sigue:
 
 ```haskell
 r 2
