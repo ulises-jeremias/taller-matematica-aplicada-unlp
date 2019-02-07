@@ -2,7 +2,7 @@
 
 > Introducción a Haskell
 
-Haskell es un **lenguaje de programación funcional puro** el cual vamos a utilizar en este taller ya que, a diferencia de lenguajes imperativos (como pueden ser Pascal o R-info), haskell presenta una mayor relación con las matemática. Esto nos permite escribir las *ideas* expresadas matemática, ó naturalmente, directamente en el lenguaje de programación.
+Haskell es un **lenguaje de programación funcional puro** el cual vamos a utilizar en este taller ya que, a diferencia de lenguajes imperativos (como pueden ser Pascal o R-info), haskell presenta una mayor relación con la matemática. Esto nos permite escribir las *ideas* expresadas matemática, ó naturalmente, directamente en el lenguaje de programación.
 
 * * *
 
@@ -41,7 +41,7 @@ r 2 :: Bool
 
 * * *
 
-Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el tipo de las funciones. Sim embargo, en el ejemplo anterior, utilizamos `::` para indicar el tipo de `r 2`. Qué pasó? **INSERTE MEME AQUÍ**
+Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el tipo de las funciones. Sin embargo, en el ejemplo anterior, utilizamos `::` para indicar el tipo de `r 2`. Qué pasó? **INSERTE MEME AQUÍ**
 
 Esto sucede ya que en Haskell, al igual que en matemáticas, no diferenciamos lo que son funciones de lo que son los valores. Es decir, una función es un valor que, al igual que el resto de los valores que vemos, _tiene un **tipo**_. En este caso, cuando indicamos `r :: Int -> Bool` estamos diciendo que el tipo de `r` es `Int -> Bool`.
 
