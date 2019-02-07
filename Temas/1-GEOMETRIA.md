@@ -46,3 +46,50 @@ Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el t
 Esto sucede ya que en Haskell, al igual que en matemáticas, no diferenciamos lo que son funciones de lo que son los valores. Es decir, una función es un valor que, al igual que el resto de los valores que vemos, _tiene un **tipo**_. En este caso, cuando indicamos `r :: Int -> Bool` estamos diciendo que el tipo de `r` es `Int -> Bool`.
 
 Más adelante vamos a ver como podemos sacarle el jugo a esta hermosa propiedad.
+
+## Don Cartesiano
+
+Existen situaciones en las cuales es conveniente expresar un problema a traves de un plano coordenado. Este se compone de dos ejes que representan dos variables. Precio de un terreno en funcion de su tamaño. **INSERTAR IMAGEN**. Crecimiento de población en función del tiempo. En resumen, cualquier par de datos del mundo real donde una depende de la otra.
+
+> Se quiere saber, dada la longitud de una pared, que superficie tendrá una habitación cuadrada con dicha longitud.
+
+* * *
+
+Sabemos que un punto en un dato en el plano al cual le podemos atribuir un valor, por lo tanto, podemos definir funciones como las siguientes:
+
+```haskell
+abscisa :: (Float, Float) -> Float
+abscisa (x, y) = x
+
+ordenada :: (Float, Float) -> Float
+ordenada (x, y) = y
+```
+Supongamos que queremos sumar dos puntos. La suma entre dos puntos la definiremos de la siguiente forma:
+
+```
+Sean P = (a, b), Q = (c, d),
+
+P + Q = (a + c, b + d)
+```
+
+1.  Necesitamos buscar las forma de poder enviar dos puntos como parámetros de la función. **PREGUNTAR SI SE LES OCURRE COMO**
+
+2.  Producto por un escalar
+
+> Podemos recibir parámetros de dos tipos? **Como siempre, proponer que den el tipo de la funcion**
+
+3.  Región en el plano
+
+> Hacer una función que diga si un punto está en una región dada. Pero, que es una región?
+
+4.  Funciones con rectas
+
+> Una recta es una relación entre dos valores, uno del eje X y otro del eje Y. Entonces es una función y por lo tanto podemos aplicar todas las propiedades que venimos trabajando hasta ahora.
+
+5.  Evaluar si un punto pertenece a la recta
+
+6.  Let in y Where
+
+7.  Funciones en rectas
+
+> Pasemos una recta como parámetro
