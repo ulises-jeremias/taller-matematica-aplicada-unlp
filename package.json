@@ -6,7 +6,7 @@
   "author": "ulises-jeremias <ucornejofandos@lifia.info.unlp.edu.ar>",
   "license": "MIT",
   "scripts": {
-    "start": "reveal-md src/curso.md",
+    "start": "reveal-md src/curso.md -w",
     "build": "reveal-md src/curso.md --static . --static-dirs=src/static --highlight-theme=atom-one-dark",
     "open:chrome": "yarn build && chrome index.html",
     "open:chromium": "yarn build && chromium index.html",
