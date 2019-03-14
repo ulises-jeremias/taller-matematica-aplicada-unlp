@@ -151,6 +151,17 @@ esPar x = divide (2, x)
 
 ----
 
+### Repasamos cosas de Haskell
+
+```haskell
+'c'   :: Char  -- caracter 'c' es de tipo Char
+2     :: Int   -- 2 es de tipo Int, es decir, 2 pertenece a Z
+True  :: Bool  -- True es de tipo Bool
+False :: Bool  -- False es de tipo Bool
+```
+
+----
+
 Definir las siguientes funciones
 
 - $p$($n$): $n$ es par
