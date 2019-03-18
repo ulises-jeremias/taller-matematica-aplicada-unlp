@@ -1,17 +1,5 @@
-## Introducción a Haskell
-
-----
-
-<!-- .slide: style="text-align: left" -->
-
-### Haskell
-
-- Es un **lenguaje de programación funcional puro**.
-- Lo utilizamos en el taller dado que presenta mayor relación con la matemática.
-  - A diferencia de lenguajes imperativos como R-Info o Pascal.
-- Esto permite escribir las ideas expresadas matemática, ó naturalmente, _directamente_ en el lenguaje de programación.
-
-----
+## Repaso
+### Introducción a Haskell
 
 <!-- .slide: style="text-align: left" -->
 

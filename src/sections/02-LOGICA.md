@@ -64,33 +64,107 @@ En los lenguajes de programación no trabajamos con _"oraciones"_ como tal, sino
 
 
 <div data-markdown>
+    <br />
+
     <!-- .element: class="fragment" -->
     $p(x) = x$ es par, es una **función proposicional**. Por qué?
     
     <br />
     <br />
 
-    Para responder analicemos lo siguiente:
+    El objetivo del taller es poder llevar los temas de la materia al ámbito de la computación. Para eso vamos a usar un lenguaje en particular, llamado **Haskell**.
 
     <br />
     <br />
-</div>
-
-<div data-markdown>
-    <!-- .element: class="fragment" style="text-align: center" -->
-
-    **VEAMOS EL PIZARRÓN**
 </div>
 
 ----
 
-## Equivalencias
+## Introducción a Haskell
+
+----
+
+<!-- .slide: style="text-align: left" -->
+
+### Haskell
+
+- Es un **lenguaje de programación funcional puro**.
+- Lo utilizamos en el taller dado que presenta mayor relación con la matemática.
+  - A diferencia de lenguajes imperativos como R-Info o Pascal.
+- Esto permite escribir las ideas expresadas matemática, ó naturalmente, _directamente_ en el lenguaje de programación.
+
+----
+
+### ¿Cómo se expresan estas ideas?
+
+Definiendo funciones.
+
+----
+
+Aunque después vamos a ver el concepto de función más formalmente en la materia, podemos dar una definición más natural:
+
+<small class="fragment">
+  Una _**función**_ es una caja que recibe uno, o más, elementos de un cierto _tipo_ y devuelve una sóla cosa de algún otro _tipo_. Es importante el concepto de que sólo se devuelve un único elemento.
+</small>
+
+----
+
+En Haskell es muy útil e importante definir las funciones, así como en R-Info definían variables. Veamos como se declaran paso a paso.
+
+Note: Mostrar en el pizarron paso a paso como declarar y definir una función.
+
+----
+
+<small>
+  Esta función recibe un número entero (Int) y el doble de ese número (Int).
+</small>
+
+```haskell
+-- | double 2 = 4
+-- | double 3 = 6
+-- | double 4 = 8
+-- | double (double 2) = ?
+double :: Int -> Int
+```
+
+----
+Luego de declarar una función la definimos. Para esto podríamos decir cuánto vale la función para cada posible valor. Es importante que sólo podemos tener un resultado para un valor dado. Por ejemplo:
+
+----
+
+
+Algo que estaría **mal** es lo siguiente:
+
+```haskell
+double 2 = 4
+double 2 = 3
+```
+
+----
+
+No sólo porque no tiene ningún sentido si no que, por lo que mencionamos antes, **Una función NO puede tener dos resultados distintos para el mismo valor de entrada**. Claramente, este trabajo de dar el valor para cada posible entrada es tedioso, así que lo escribinos así.
+
+----
+
+### Definimos double
+
+```haskell
+double :: Int -> Int
+double x = 2 * x
+```
+<!-- .element: class="fragment" -->
+
+----
+
+### Problema
+
+Una _función proposicional_, **¿qué tipo devuelve?** **¿qué recibe?**
 
 ----
 
 ### Función proposicional
 
-Una funcion proposicional en Haskell debe declararse,
+Una funcion, en este caso proposicional, en Haskell debe declararse,
 
 ```haskell
 p :: u -> Bool -- u es conjunto universal
@@ -119,7 +193,44 @@ En las definicion anterior se pueden observar aspectos de haskell que iremos pro
 
 ----
 
-### Operadores lógicos
+## Operadores en Haskell
+
+----
+
+### Operadores Booleanos
+
+```haskell
+True && False   -- | AND lógico
+True || False   -- | OR lógico
+not True        -- | negación lógica
+```
+
+----
+
+### Operadores Aritméticos
+
+```haskell
+2 + 3   -- | suma
+3 - 2   -- | resta
+4 * 2   -- | producto
+1 / 2   -- | division
+  .
+  .
+  .
+```
+
+----
+
+## Operadores relacionales
+
+```haskell
+4 < 6    -- | menos que
+3 <= 9   -- | menor o igual que
+8 == 7   -- | igualdad
+0 /= 1   -- | desigualdad
+3 >= 2   -- | mayor o igual que
+2 > 3    -- | mas que
+```
 
 ----
 
@@ -129,13 +240,13 @@ Dadas las siguientes funciones proposicionales,
 
 ```haskell
 -- Evalúa si un número divide a otro
--- divide (2, 4) == True
--- divide (3, 4) == False
+-- divide (2, 4) = True
+-- divide (3, 4) = False
 divide :: (Int, Int) -> Bool
 
 -- Evalúa si un número es par
--- esPar 2 == True
--- esPar 3 == False
+-- esPar 2 = True
+-- esPar 3 = False
 esPar :: Int -> Bool
 ```
 
