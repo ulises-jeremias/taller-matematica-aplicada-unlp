@@ -3,7 +3,7 @@ const path = require('path')
 
 const LINE_SEPARATOR = '\n'
 const FILE_REF_REGEX = /^FILE: (.+)$/
-const CODE_FILE_REF_REGEX = /^CODE: (\S+) (\S+)( editable)?$/
+const CODE_FILE_REF_REGEX = /^CODE: (\S+)\s*(\S+)( editable)?$/
 
 const escapeHtml = unsafe =>
     unsafe

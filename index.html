@@ -24,6 +24,8 @@
     _ucornejofandos@lifia.info.unlp.edu.ar_
 
 -   Iván Mindlin
+    <br />
+    _mindlinster@gmail.com_
 </script></section><section data-markdown><script type="text/template">
 ## Motivación
 </script></section><section data-markdown><script type="text/template">
@@ -51,6 +53,10 @@ Para programar en este curso recomendamos las siguientes opciones:
 
 - [Online Haskell Compiler](https://repl.it/languages/haskell)
 - [Haskell Platform](https://www.haskell.org/platform)
+</script></section><section data-markdown><script type="text/template">
+<a href="https://repl.it/languages/haskell" target="_blank">
+    <img src="static/online_haskell_compiler.png" />
+</a>
 </script></section></section><section ><section data-markdown><script type="text/template">
 # Lógica
 </script></section><section data-markdown><script type="text/template">
@@ -104,29 +110,83 @@ En los lenguajes de programación no trabajamos con _"oraciones"_ como tal, sino
 
 
 <div data-markdown>
+    <br />
+
     <!-- .element: class="fragment" -->
     $p(x) = x$ es par, es una **función proposicional**. Por qué?
     
     <br />
     <br />
 
-    Para responder analicemos lo siguiente:
+    El objetivo del taller es poder llevar los temas de la materia al ámbito de la computación. Para eso vamos a usar un lenguaje en particular, llamado **Haskell**.
 
     <br />
     <br />
-</div>
-
-<div data-markdown>
-    <!-- .element: class="fragment" style="text-align: center" -->
-
-    **VEAMOS EL PIZARRÓN**
 </div>
 </script></section><section data-markdown><script type="text/template">
-## Equivalencias
+## Introducción a Haskell
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+### Haskell
+
+- Es un **lenguaje de programación funcional puro**.
+- Lo utilizamos en el taller dado que presenta mayor relación con la matemática.
+  - A diferencia de lenguajes imperativos como R-Info o Pascal.
+- Esto permite escribir las ideas expresadas matemática, ó naturalmente, _directamente_ en el lenguaje de programación.
+</script></section><section data-markdown><script type="text/template">
+### ¿Cómo se expresan estas ideas?
+
+Definiendo funciones.
+</script></section><section data-markdown><script type="text/template">
+Aunque después vamos a ver el concepto de función más formalmente en la materia, podemos dar una definición más natural:
+
+<small class="fragment">
+  Una _**función**_ es una caja que recibe uno, o más, elementos de un cierto _tipo_ y devuelve una sóla cosa de algún otro _tipo_. Es importante el concepto de que sólo se devuelve un único elemento.
+</small>
+</script></section><section data-markdown><script type="text/template">
+En Haskell es muy útil e importante definir las funciones, así como en R-Info definían variables. Veamos como se declaran paso a paso.
+
+<aside class="notes"><p>Mostrar en el pizarron paso a paso como declarar y definir una función.</p>
+</aside></script></section><section data-markdown><script type="text/template">
+<small>
+  Esta función recibe un número entero (Int) y el doble de ese número (Int).
+</small>
+
+```haskell
+-- | double 2 = 4
+-- | double 3 = 6
+-- | double 4 = 8
+-- | double (double 2) = ?
+double :: Int -> Int
+```
+</script></section><section data-markdown><script type="text/template">Luego de declarar una función la definimos. Para esto podríamos decir cuánto vale la función para cada posible valor. Es importante que sólo podemos tener un resultado para un valor dado. Por ejemplo:
+</script></section><section data-markdown><script type="text/template">
+
+Algo que estaría **mal** es lo siguiente:
+
+```haskell
+double 2 = 4
+double 2 = 3
+```
+</script></section><section data-markdown><script type="text/template">
+No sólo porque no tiene ningún sentido si no que, por lo que mencionamos antes, **Una función NO puede tener dos resultados distintos para el mismo valor de entrada**. Claramente, este trabajo de dar el valor para cada posible entrada es tedioso, así que lo escribinos así.
+</script></section><section data-markdown><script type="text/template">
+### Definimos double
+
+```haskell
+double :: Int -> Int
+double x = 2 * x
+```
+<!-- .element: class="fragment" -->
+</script></section><section data-markdown><script type="text/template">
+### Problema
+
+Una _función proposicional_, **¿qué tipo devuelve?** **¿qué recibe?**
 </script></section><section data-markdown><script type="text/template">
 ### Función proposicional
 
-Una funcion proposicional en Haskell debe declararse,
+Una funcion, en este caso proposicional, en Haskell debe declararse,
 
 ```haskell
 p :: u -> Bool -- u es conjunto universal
@@ -151,7 +211,39 @@ r x = x > 0
 
 En las definicion anterior se pueden observar aspectos de haskell que iremos profundizando a medida que transcurre el taller.
 </script></section><section data-markdown><script type="text/template">
-### Operadores lógicos
+### Equivalencias
+## Operadores en Haskell
+</script></section><section data-markdown><script type="text/template">
+### Operadores Booleanos
+
+```haskell
+True && False   -- | AND lógico
+True || False   -- | OR lógico
+not True        -- | negación lógica
+```
+</script></section><section data-markdown><script type="text/template">
+### Operadores Aritméticos
+
+```haskell
+2 + 3   -- | suma
+3 - 2   -- | resta
+4 * 2   -- | producto
+1 / 2   -- | division
+  .
+  .
+  .
+```
+</script></section><section data-markdown><script type="text/template">
+## Operadores relacionales
+
+```haskell
+4 < 6    -- | menos que
+3 <= 9   -- | menor o igual que
+8 == 7   -- | igualdad
+0 /= 1   -- | desigualdad
+3 >= 2   -- | mayor o igual que
+2 > 3    -- | mas que
+```
 </script></section><section data-markdown><script type="text/template">
 ## Problemas
 
@@ -159,13 +251,13 @@ Dadas las siguientes funciones proposicionales,
 
 ```haskell
 -- Evalúa si un número divide a otro
--- divide (2, 4) == True
--- divide (3, 4) == False
+-- divide (2, 4) = True
+-- divide (3, 4) = False
 divide :: (Int, Int) -> Bool
 
 -- Evalúa si un número es par
--- esPar 2 == True
--- esPar 3 == False
+-- esPar 2 = True
+-- esPar 3 = False
 esPar :: Int -> Bool
 ```
 </script></section><section data-markdown><script type="text/template">
@@ -175,6 +267,15 @@ divide (d, x) = mod x d == 0
 
 esPar :: Int -> Bool
 esPar x = divide (2, x)
+```
+</script></section><section data-markdown><script type="text/template">
+### Repasamos cosas de Haskell
+
+```haskell
+'c'   :: Char  -- caracter 'c' es de tipo Char
+2     :: Int   -- 2 es de tipo Int, es decir, 2 pertenece a Z
+True  :: Bool  -- True es de tipo Bool
+False :: Bool  -- False es de tipo Bool
 ```
 </script></section><section data-markdown><script type="text/template">
 Definir las siguientes funciones
@@ -187,7 +288,7 @@ Definir las siguientes funciones
 - $t$($x$, $y$): la suma entre $x$ e $y$ es igual a cero
 - $w$($a$, $b$): $a$ es el opuesto de $b$
 - $h$($n$, $m$): $n$ es igual a $0$ y $m$ no es la letra 'c'
-- $a$($x$): 'x' es la letra 'x'
+- $a$($x$): 'x' es igual a 'x'
 </script></section><section data-markdown><script type="text/template">
 **SOLUCIONES**
 
@@ -206,7 +307,102 @@ c x = x == 'c'
 
 d :: Char -> Bool
 d x = not (c x)
-```</script></section></section></div>
+
+t :: (Int, Int) -> Bool
+t (x, y) = x + y == 0
+
+w :: (Int, Int) -> Bool
+w (a, b) = a == -b
+
+h :: (Int, Char) -> Bool
+h (n, m) = n == 0 && not (c m)
+
+a :: u -> Bool
+a x = True
+```
+</script></section></section><section ><section data-markdown><script type="text/template">
+## Repaso
+### Introducción a Haskell
+
+<!-- .slide: style="text-align: left" -->
+
+Esta sección del taller corresponde a la parte de Geometría de la materia. Sin embargo, por el momento vamos a seguir explorando Haskell así podemos utilizarlo para resolver problemas.
+</script></section><section data-markdown><script type="text/template">
+Para ello vamos a reforzar la idea de **Función** en _Haskell_.
+</script></section><section data-markdown><script type="text/template">
+Todas las funciones necesitan declararse. Recordemos el ejemplo del encuentro anterior
+
+```haskell
+r :: Int -> Bool
+```
+
+Primero aclaramos qué función vamos a declarar y luego indicamos qué cosas recibe, y qué cosas devuelve.
+</script></section><section data-markdown><script type="text/template">
+En este caso recibe algo de Tipo **$u$** y devuelve algo de Tipo _**Bool**_. Pero...
+</script></section><section data-markdown><script type="text/template">
+### ¿Qué es un Tipo?
+
+Cuando decimos que **algo es de un cierto tipo**, nos referimos a que ese _"algo"_ es un **valor qué pertenece a un determinado conjunto**. 
+
+<small>
+    Por ejemplo, cuando decimos que $x$ es de tipo Entero (_Int_ de Haskell), nos referimos a que los valores que puede tomar $x$ son valores enteros, es decir, $x$ pertenece al conjunto de los Enteros ($\mathcal{Z}$ matemático).
+</small>
+</script></section><section data-markdown><script type="text/template">
+Luego, se define la función $r$ como sigue:
+
+```haskell
+r :: Int -> Bool
+r x = x > 0
+```
+
+<small>
+    En este caso estamos diciendo que $r$ es una función que dado un $x$ entero devuelve un booleano que es verdadero, si $x > 0$.
+</small>
+</script></section><section data-markdown><script type="text/template">
+### ¿Cómo usamos esta función?
+
+La aplicamos.
+</script></section><section data-markdown><script type="text/template">
+La aplicación es una de las operaciones que podemos realizar con una función. En haskell lo expresamos con un espacio `" "`.
+</script></section><section data-markdown><script type="text/template">
+Por ejemplo, lo que en matemática haríamos de esta forma, $r(2)$, en haskell es como sigue:
+
+```haskell
+r 2
+-- True
+```
+
+<small>
+    aplicamos la función $r$ a un valor entero, $2$, obteniendo un valor de salida booleano, _True_.
+</small>
+</script></section><section data-markdown><script type="text/template">
+En terminos generales, podemos aplicar una función cualquiera a un valor cuyo **Tipo** sea el mismo que el **tipo de entrada** de la función. Y el resultado de la aplicación tendrá el tipo de salida de la misma.
+</script></section><section data-markdown><script type="text/template">
+En el ejemplo anterior
+
+```haskell
+r 2 :: Bool
+```
+</script></section><section data-markdown><script type="text/template">
+Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el tipo de las funciones. Sin embargo, en el ejemplo anterior, utilizamos `::` para indicar el tipo de _r 2_.
+</script></section><section data-markdown><script type="text/template">
+### Que pasó??
+
+<small>
+    En haskell, al igual que en matemática, no diferenciamos lo que son funciones de los que son los valores. Es decir, una **función es un valor** que, al igual que el resto de los valores, tiene un **tipo**.
+</small>
+</script></section><section data-markdown><script type="text/template">
+En este caso, cuando indicamos 
+
+```haskell
+r :: Int -> Bool
+```
+
+estamos diciendo que el **tipo** de $r$ es _Int -> Bool_.
+
+**Más adelante vamos a ver como podemos sacarle el jugo a esta hermosa propiedad.** <!-- .element: class="fragment" -->
+</script></section><section data-markdown><script type="text/template">
+## Geometría</script></section></section></div>
     </div>
 
     <script src="./lib/js/head.min.js"></script>

@@ -5,8 +5,12 @@ highlightTheme: atom-one-dark
 preprocessor: preproc.js
 ---
 
-FILE: 01-intro.md
+FILE: 01-INTRO.md
 
 ---
 
-FILE: 02-logica.md
+FILE: 02-LOGICA.md
+
+---
+
+FILE: 03-GEOMETRIA.md
