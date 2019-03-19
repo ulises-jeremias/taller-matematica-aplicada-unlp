@@ -193,6 +193,7 @@ En las definicion anterior se pueden observar aspectos de haskell que iremos pro
 
 ----
 
+### Equivalencias
 ## Operadores en Haskell
 
 ----
@@ -283,7 +284,7 @@ Definir las siguientes funciones
 - $t$($x$, $y$): la suma entre $x$ e $y$ es igual a cero
 - $w$($a$, $b$): $a$ es el opuesto de $b$
 - $h$($n$, $m$): $n$ es igual a $0$ y $m$ no es la letra 'c'
-- $a$($x$): 'x' es la letra 'x'
+- $a$($x$): 'x' es igual a 'x'
 
 ----
 
@@ -304,4 +305,16 @@ c x = x == 'c'
 
 d :: Char -> Bool
 d x = not (c x)
+
+t :: (Int, Int) -> Bool
+t (x, y) = x + y == 0
+
+w :: (Int, Int) -> Bool
+w (a, b) = a == -b
+
+h :: (Int, Char) -> Bool
+h (n, m) = n == 0 && not (c m)
+
+a :: u -> Bool
+a x = True
 ```
