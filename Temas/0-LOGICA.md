@@ -36,19 +36,69 @@ es decir, Verdadero o Falso, True o False, un booleano (Bool).
 
 `p(x) = x es par` es una función proposicional. Por qué?
 
-Para responder analicemos lo siguiente:
+El objetivo del taller es poder llevar los temas de la materia al ámbito de la computación. Para eso vamos a usar un lenguaje en particular, llamado Haskell
 
-**INSERTE AQUI TECNICA DE RECUADROS**
+> Introducción a Haskell
 
-**Equivalencia** (aclarar que llamamos Equivalencia a como definimos en haskell las cosas que ya conociamos en matematica)
+Haskell es un **lenguaje de programación funcional puro** el cual vamos a utilizar en este taller ya que, a diferencia de lenguajes imperativos (como pueden ser Pascal o R-info), haskell presenta una mayor relación con la matemática. Esto nos permite escribir las *ideas* expresadas matemática, ó naturalmente, directamente en el lenguaje de programación.
 
-Una funcion proposicional en Haskell antes debe declararse
+> Funciones
+
+¿Cómo se expresan estas ideas? Definiendo funciones. Aunque después vamos a ver el concepto de función más formalmente en la materia, podemos dar una definición más natural.
+Una función es una caja que recibe uno más elementos de un cierto *tipo* y devuelve una sóla cosa de algún otro *tipo*. Es importante el concepto de que sólo se devuelve un elemento.
+
+
+**PROBLEMA**
+
+¿Una función proposicional? ¿qué tipo devuelve? ¿qué recibe?
+
+> Declaración de funciones
+
+En Haskell es muy útil e importante definir las funciones, así como en R-info definían variables. Veamos la sintaxis
+
+**MOSTRAR EN PIZARRON** Paso por paso. Nombre de función. :: tipos, flechas y finalmente el tipo que se devuelve
 
 ```haskell
 p :: u -> Bool -- u es conjunto universal
 ```
 u representa al conjunto universal
 -> Bool quiere decir que devolveremos un valor de verdad, un booleano, es decir que puede ser True o False. (En R-Info lo llamamos V y F)
+
+> Definición de funciones
+
+Luego de declarar una función la definimos. Para eso podríamos decir cuánto vale la función para cada posible valor. Es importante que *sólo podemos tener un resultado para un valor dado* 
+Por ejemplo sea:
+
+```haskell
+aMayus :: Char -> Char
+```
+Ésta función recibe un char y un char (en particular, si recibe algo en minúsula, lo devuelve a mayúsucula). Si queremos decir qué valor devuelve para el valor 'a' y para 'b', por ejemplo, escribimos
+
+```haskell
+aMayus 'a' = 'A'
+aMayus 'b' = 'B'
+```
+
+y así podríamos seguir. Lo que estaría **mal** sería definir esto:
+
+```haskell
+aMayus 'a' = 'A'
+aMayus 'a' = '#'
+```
+
+No sólo porque no tiene ningún sentido si no por lo que mencionamos antes **Una función no puede tener dos resultados distintos para la misma entrada**. Claramente, este trabajo de dar el valor para cada posible entrada es tedioso, así que lo escribinos así
+
+```haskell
+aMayus x = toUpper x 
+```
+
+Analicémoslo. Para referirse a "Cualquier elemento que entre" podemos utilizar una letra cualquiera, en este caso x. Del otro lado del igual estamos llamando a una **expresión**, particularmente, el resultado de usar la función toUpper  (está bien, hicimos trampa).
+
+*nombreDeFunción* *parámetro* = *expresión*
+
+una expresión es algo que puede tomar un valor. Por ejemplo 'c', 2, 1.4 o True. Cuando *aplicamos* una función, ésta nos da un valor. **No se preocupen, vamos a volver a estos conceptos**
+
+> Volviendo a funciones proposicionales
 
 Para definir, e.g., la funcion proposional `r(x): x es mayor que 0` lo hacemos de la siguiente forma:
 
@@ -58,6 +108,8 @@ r x = x > 0
 
 -- donde x es cualquier valor perteneciente a los Enteros, (Z), (Int).
 ```
+
+**Equivalencia** (aclarar que llamamos Equivalencia a como definimos en haskell las cosas que ya conociamos en matematica)
 
 En las definicion anterior se pueden observar aspectos de haskell que iremos profundizando a medida que transcurre la materia.
 
