@@ -116,7 +116,7 @@ Note: Mostrar en el pizarron paso a paso como declarar y definir una función.
 ----
 
 <small>
-  Esta función recibe un número entero (Int) y el doble de ese número (Int).
+  Esta función recibe un número entero (Int) y retorna el doble de ese número (Int).
 </small>
 
 ```haskell
@@ -142,11 +142,15 @@ double 2 = 3
 
 ----
 
-No sólo porque no tiene ningún sentido si no que, por lo que mencionamos antes, **Una función NO puede tener dos resultados distintos para el mismo valor de entrada**. Claramente, este trabajo de dar el valor para cada posible entrada es tedioso, así que lo escribinos así.
+No sólo porque no tiene ningún sentido si no que, por lo que mencionamos antes, **Una función NO puede tener dos resultados distintos para el mismo valor de entrada**.
 
 ----
 
 ### Definimos double
+
+<small>
+  Claramente, este trabajo de dar el valor para cada posible entrada es tedioso, así que la definimos como se puede ver a continuación:
+</small>
 
 ```haskell
 double :: Int -> Int
@@ -189,7 +193,9 @@ r x = x > 0
 -- a los Enteros, (Z), (Int).
 ```
 
-En las definicion anterior se pueden observar aspectos de haskell que iremos profundizando a medida que transcurre el taller.
+<small>
+  En las definicion anterior se pueden observar aspectos de haskell que iremos profundizando a medida que transcurre el taller.
+</small>
 
 ----
 

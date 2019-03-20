@@ -50,9 +50,3 @@ Para programar en este curso recomendamos las siguientes opciones:
 
 - [Online Haskell Compiler](https://repl.it/languages/haskell)
 - [Haskell Platform](https://www.haskell.org/platform)
-
-----
-
-<a href="https://repl.it/languages/haskell" target="_blank">
-    <img src="static/online_haskell_compiler.png" />
-</a>
