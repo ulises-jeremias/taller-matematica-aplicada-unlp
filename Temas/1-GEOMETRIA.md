@@ -51,6 +51,8 @@ Existen situaciones en las cuales es conveniente expresar un problema a traves d
 
 > Se quiere saber, dada la longitud de una pared, que superficie tendrá una habitación cuadrada con dicha longitud.
 
+ESCRIBIR EL PROBLEMA COMO EN MATEMATICA Y DESPUES EN HASKELL
+
 * * *
 
 Sabemos que un punto en un dato en el plano al cual le podemos atribuir un valor, por lo tanto, podemos definir funciones como las siguientes:
