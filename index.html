@@ -333,10 +333,10 @@ Esta sección del taller corresponde a la parte de Geometría de la materia. Sin
 </script></section><section data-markdown><script type="text/template">
 Para ello vamos a reforzar la idea de **Función** en _Haskell_.
 </script></section><section data-markdown><script type="text/template">
-Todas las funciones necesitan declararse. Recordemos el ejemplo del encuentro anterior
+Todas las funciones necesitan declararse. 
 
 ```haskell
-r :: Int -> Bool
+toCelcius :: Int -> Float
 ```
 
 Primero aclaramos qué función vamos a declarar y luego indicamos qué cosas recibe, y qué cosas devuelve.
@@ -351,15 +351,20 @@ Cuando decimos que **algo es de un cierto tipo**, nos referimos a que ese _"algo
     Por ejemplo, cuando decimos que $x$ es de tipo Entero (_Int_ de Haskell), nos referimos a que los valores que puede tomar $x$ son valores enteros, es decir, $x$ pertenece al conjunto de los Enteros ($\mathcal{Z}$ matemático).
 </small>
 </script></section><section data-markdown><script type="text/template">
-Luego, se define la función $r$ como sigue:
+Las **expresiones** son formas de denotar un valor. Es decir el valor es una idea de lo que queremos representar, mientras que una expresión es la manera en la que "hablamos" de ese valor. 
+
+<aside class="notes"><p>Anotar en el pizarrón a las expresiones apuntando a los valores que pertenecen a un cierto tipo</p>
+</aside></script></section><section data-markdown><script type="text/template">
+</script></section><section data-markdown><script type="text/template">
+Luego, se define la función $toCelcius$ como sigue:
 
 ```haskell
-r :: Int -> Bool
-r x = x > 0
+toCelcius :: Int -> Float
+toCelcius c = (c - 32)*(5/9)
 ```
 
 <small>
-    En este caso estamos diciendo que $r$ es una función que dado un $x$ entero devuelve un booleano que es verdadero, si $x > 0$.
+    En este caso estamos diciendo que $toCelcius$ es una función que dado un $x$ entero devuelve un flotante, que es la temperatura en farenheit para la entrada c, temperatura en celcius
 </small>
 </script></section><section data-markdown><script type="text/template">
 ### ¿Cómo usamos esta función?
@@ -368,15 +373,15 @@ La aplicamos.
 </script></section><section data-markdown><script type="text/template">
 La aplicación es una de las operaciones que podemos realizar con una función. En haskell lo expresamos con un espacio `" "`.
 </script></section><section data-markdown><script type="text/template">
-Por ejemplo, lo que en matemática haríamos de esta forma, $r(2)$, en haskell es como sigue:
+Por ejemplo, lo que en matemática haríamos de esta forma, $toCelcius(82)$, en haskell es como sigue:
 
 ```haskell
-r 2
--- True
+r 82
+-- 27.77777777777778
 ```
 
 <small>
-    aplicamos la función $r$ a un valor entero, $2$, obteniendo un valor de salida booleano, _True_.
+    aplicamos la función $toCelcius$ a un valor entero, $82$, obteniendo un valor de salida flotante, _27.77777777777778.
 </small>
 </script></section><section data-markdown><script type="text/template">
 En terminos generales, podemos aplicar una función cualquiera a un valor cuyo **Tipo** sea el mismo que el **tipo de entrada** de la función. Y el resultado de la aplicación tendrá el tipo de salida de la misma.
@@ -384,10 +389,10 @@ En terminos generales, podemos aplicar una función cualquiera a un valor cuyo *
 En el ejemplo anterior
 
 ```haskell
-r 2 :: Bool
+toCelcius 82 :: Float
 ```
 </script></section><section data-markdown><script type="text/template">
-Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el tipo de las funciones. Sin embargo, en el ejemplo anterior, utilizamos `::` para indicar el tipo de _r 2_.
+Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el tipo de las funciones. Sin embargo, en el ejemplo anterior, utilizamos `::` para indicar el tipo de _toCelcius 2_.
 </script></section><section data-markdown><script type="text/template">
 ### Que pasó??
 
@@ -398,14 +403,15 @@ Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el t
 En este caso, cuando indicamos 
 
 ```haskell
-r :: Int -> Bool
+toCelcius :: Int -> Bool
 ```
 
 estamos diciendo que el **tipo** de $r$ es _Int -> Bool_.
 
 **Más adelante vamos a ver como podemos sacarle el jugo a esta hermosa propiedad.** <!-- .element: class="fragment" -->
 </script></section><section data-markdown><script type="text/template">
-## Geometría</script></section></section></div>
+## Geometría
+</script></section></section></div>
     </div>
 
     <script src="./lib/js/head.min.js"></script>
