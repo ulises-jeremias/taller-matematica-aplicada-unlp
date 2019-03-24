@@ -107,12 +107,14 @@ Nosotros hasta ahora habiamos visto el operador `::` al momento de declarar el t
 En este caso, cuando indicamos 
 
 ```haskell
-toCelcius :: Int -> Bool
+toCelcius :: Int -> Float
 ```
 
-estamos diciendo que el **tipo** de $r$ es _Int -> Bool_.
+estamos diciendo que el **tipo** de $r$ es _Int -> Float_.
 
 **Más adelante vamos a ver como podemos sacarle el jugo a esta hermosa propiedad.** <!-- .element: class="fragment" -->
+
+Note: siendo la propiedad el hecho de que las funciones también sean expresiones
 
 ----
 
