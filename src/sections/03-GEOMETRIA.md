@@ -116,3 +116,78 @@ Note: siendo la propiedad el hecho de que las funciones también sean expresione
 ----
 
 ## Geometría
+
+Existen situaciones en las cuales es conveniente expresar un problema a traves de un plano coordenado. Este se compone de dos ejes que representan dos variables. Por ejemplo el crecimiento de una población en función del tiempo.
+
+<img src="../assets/worldGrowth.png" alt="Imagen poblacion" width="128" height="128">
+
+Tenemos una variable, cuyo valor depende de otra variable
+
+----
+
+Expresemos, por ejemplo, la superficie de un terreno en función de uno de sus lados
+
+Note: Escribir el problema matemáticamente, y después en Haskell
+
+----
+Sabemos que un punto es un dato en el plano al cual le podemos atribuir un valor, por lo tanto, podemos definir funciones como las siguientes:
+
+```haskell
+abscisa :: (Float, Float) -> Float
+
+ordenada :: (Float, Float) -> Float
+```
+Note: preguntar cómo es
+----
+Sabemos que un punto es un dato en el plano al cual le podemos atribuir un valor, por lo tanto, podemos definir funciones como las siguientes:
+
+```haskell
+abscisa :: (Float, Float) -> Float
+abscisa (x, y) = x
+
+ordenada :: (Float, Float) -> Float
+ordenada (x, y) = y
+```
+----
+
+Supongamos que queremos sumar dos puntos. La suma entre dos puntos la definiremos de la siguiente forma:
+
+```
+Sean P = (a, b), Q = (c, d),
+
+P + Q = (a + c, b + d)
+```
+
+Note: Hablar sobre recibir varios parámetros en una función
+
+----
+
+Cuando querramos recibir varios parámetros declararemos la función de la siguiente manera: 
+
+*a0 -> a1 -> a2*
+
+Donde *a0* y *a1* son los tipos de entrada, y *a2* es el tipo de salida. En general, siempre el último tipo indicado es el tipo de salida
+
+----
+### Regiones en el plano
+
+Hagamos una función que nos diga si un punta dado *p* pertenece a una cierta región *r*.
+
+----
+
+### Rectas
+
+Una recta es una relación entre dos valores, uno del eje X y otro del eje Y. Entonces es una función y por lo tanto podemos aplicar todas las propiedades que venimos trabajando hasta ahora. 
+
+Note: Hacer que definan una función que me diga si un punta dado está en la recta
+
+----
+
+A veces nos da mayor legibilidad guardar ciertas ideas en variables. 
+
+**Equivalencia**
+Así como en matémica decimos "Sea x una variable real" o "Donde f es una función" en haskell tenemos las cláusulas _**let**_ y _**where**_
+
+Note: Habría que explicar el let in, y el where
+----
+
