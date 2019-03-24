@@ -41,9 +41,6 @@ Note: Anotar en el pizarrón a las expresiones apuntando a los valores que perte
 
 ----
 
-
-----
-
 Luego, se define la función $toCelcius$ como sigue:
 
 ```haskell
