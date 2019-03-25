@@ -21,7 +21,7 @@ Primero aclaramos qué función vamos a declarar y luego indicamos qué cosas re
 
 ----
 
-En este caso recibe algo de Tipo **$u$** y devuelve algo de Tipo _**Bool**_. Pero...
+En este caso recibe algo de Tipo **$Int$** y devuelve algo de Tipo _**Float**_. Pero...
 
 ----
 
@@ -107,11 +107,9 @@ En este caso, cuando indicamos
 toCelcius :: Int -> Float
 ```
 
-estamos diciendo que el **tipo** de $r$ es _Int -> Float_.
+estamos diciendo que el **tipo** de $r$ es _Int -> Float_ ¿Y esto qué implica? Si las funciones son "procesos" que reciben algo de un cierto tipo y devuelven otra cosa de un cierto tipo, y las funciones tienen un tipo, tiene sentido que una función pueda **recibir una función como parámetro de entrada**. Veamos cómo nos ayuda esto en la siguiente sección.
 
-**Más adelante vamos a ver como podemos sacarle el jugo a esta hermosa propiedad.** <!-- .element: class="fragment" -->
 
-Note: siendo la propiedad el hecho de que las funciones también sean expresiones
 
 ----
 
@@ -134,20 +132,20 @@ Sabemos que un punto es un dato en el plano al cual le podemos atribuir un valor
 
 ```haskell
 abscisa :: (Float, Float) -> Float
-
-ordenada :: (Float, Float) -> Float
 ```
-Note: preguntar cómo es
-----
-Sabemos que un punto es un dato en el plano al cual le podemos atribuir un valor, por lo tanto, podemos definir funciones como las siguientes:
 
 ```haskell
-abscisa :: (Float, Float) -> Float
 abscisa (x, y) = x
-
+```
+<!-- .element: class="fragment" -->
+```haskell
 ordenada :: (Float, Float) -> Float
+```
+```haskell
 ordenada (x, y) = y
 ```
+<!-- .element: class="fragment" -->
+Note: preguntar cómo es
 ----
 
 Supongamos que queremos sumar dos puntos. La suma entre dos puntos la definiremos de la siguiente forma:
@@ -166,7 +164,7 @@ Cuando querramos recibir varios parámetros declararemos la función de la sigui
 
 *a0 -> a1 -> a2*
 
-Donde *a0* y *a1* son los tipos de entrada, y *a2* es el tipo de salida. En general, siempre el último tipo indicado es el tipo de salida
+Donde *a0* y *a1* son los tipos de entrada, y *a2* es el tipo de salida. _En general_, siempre el último tipo indicado es el tipo de salida
 
 ----
 ### Regiones en el plano
