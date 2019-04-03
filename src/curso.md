@@ -14,3 +14,7 @@ FILE: 02-LOGICA.md
 ---
 
 FILE: 03-GEOMETRIA.md
+
+---
+
+FILE: 03.5-GEOMETRIA.md
