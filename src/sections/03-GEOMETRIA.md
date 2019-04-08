@@ -1,3 +1,7 @@
+# Geometría
+
+----
+
 ## Repaso
 ### Introducción a Haskell
 
@@ -131,7 +135,7 @@ Escribir expresiones que tengan los siguientes tipos
     Existen situaciones en las cuales es conveniente expresar un problema a traves de un plano coordenado. Este se compone de dos ejes que representan dos variables. Por ejemplo el crecimiento de una población en función del tiempo.
 </small>
 
-<img src="../assets/worldGrowth.png" alt="Imagen poblacion" width="250" height="250">
+<img src="../static/worldGrowth.png" alt="Imagen poblacion" width="250" height="250">
 
 Caso de estudio: _Tenemos una variable, cuyo valor depende de otra variable_.
 
