@@ -55,7 +55,7 @@ ESCRIBIR EL PROBLEMA COMO EN MATEMATICA Y DESPUES EN HASKELL
 
 * * *
 
-Sabemos que un punto en un dato en el plano al cual le podemos atribuir un valor, por lo tanto, podemos definir funciones como las siguientes:
+Sabemos que un punto es un dato en el plano al cual le podemos atribuir un valor, por lo tanto, podemos definir funciones como las siguientes:
 
 ```haskell
 abscisa :: (Float, Float) -> Float
