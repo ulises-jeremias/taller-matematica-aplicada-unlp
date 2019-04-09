@@ -139,10 +139,10 @@ Definiendo funciones.
 Aunque después vamos a ver el concepto de función más formalmente en la materia, podemos dar una definición más natural:
 
 <small class="fragment">
-  Una _**función**_ es una caja que recibe uno, o más, elementos de un cierto _tipo_ y devuelve una sóla cosa de algún otro _tipo_. Es importante el concepto de que sólo se devuelve un único elemento.
+  Una _**función**_ es una caja que recibe uno, o más, elementos de un cierto _tipo_ y devuelve una sóla cosa de algún otro _tipo_. Es importante el concepto de que sólo se devuelve un elemento.
 </small>
 </script></section><section data-markdown><script type="text/template">
-En Haskell es muy útil e importante definir las funciones, así como en R-Info definían variables. Veamos como se declaran paso a paso.
+En Haskell es muy útil e importante declarar las funciones, así como en R-Info se definían variables. Veamos como se declaran y definen paso a paso.
 
 <aside class="notes"><p>Mostrar en el pizarron paso a paso como declarar y definir una función.</p>
 </aside></script></section><section data-markdown><script type="text/template">
@@ -324,6 +324,8 @@ a :: u -> Bool
 a x = True
 ```
 </script></section></section><section ><section data-markdown><script type="text/template">
+# Geometría
+</script></section><section data-markdown><script type="text/template">
 ## Repaso
 ### Introducción a Haskell
 
@@ -336,7 +338,8 @@ Para ello vamos a reforzar la idea de **Función** en _Haskell_.
 Todas las funciones necesitan declararse. 
 
 ```haskell
-toCelcius :: Int -> Float
+-- Fahrenheit to Celsius
+ftc :: Float -> Float
 ```
 
 Primero aclaramos qué función vamos a declarar y luego indicamos qué cosas recibe, y qué cosas devuelve.
@@ -351,21 +354,21 @@ Cuando decimos que **algo es de un cierto tipo**, nos referimos a que ese _"algo
     Por ejemplo, cuando decimos que $x$ es de tipo Entero (_Int_ de Haskell), nos referimos a que los valores que puede tomar $x$ son valores enteros, es decir, $x$ pertenece al conjunto de los Enteros ($\mathcal{Z}$ matemático).
 </small>
 
-<aside class="notes"><p>Anticipar idea de expresión indicando lo importante que es cómo &quot;denotar&quot; un valor.</p>
+<aside class="notes"><p>Anticipar idea de expresión indicando lo importante que es cómo <em>denotar</em> un valor.</p>
 </aside></script></section><section data-markdown><script type="text/template">
-Las **expresiones** son formas de denotar un valor. Es decir el valor es una idea de lo que queremos representar, mientras que una expresión es la manera en la que "hablamos" de ese valor. 
+Las **expresiones** son formas de denotar un valor. Es decir el valor es una idea de lo que queremos representar, mientras que una expresión es la manera en la que _hablamos_ de ese valor. 
 
 <aside class="notes"><p>Anotar en el pizarrón a las expresiones apuntando a los valores que pertenecen a un cierto tipo</p>
 </aside></script></section><section data-markdown><script type="text/template">
-Luego, se define la función $toCelcius$ como sigue:
+Luego, se define la función $ftc$ como sigue:
 
 ```haskell
-toCelcius :: Int -> Float
-toCelcius c = (c - 32)*(5/9)
+ftc :: Float -> Float
+ftc x = (x - 32) * 5 / 9
 ```
 
 <small>
-    En este caso estamos diciendo que $toCelcius$ es una función que dado un $x$ entero devuelve un flotante, que es la temperatura en farenheit para la entrada c, temperatura en celcius
+    En este caso estamos diciendo que $ftc$ es una función que dado un $x$ flotante devuelve un flotante, que es la temperatura en celsius para la entrada x en fahrenheit.
 </small>
 </script></section><section data-markdown><script type="text/template">
 ### ¿Cómo usamos esta función?
@@ -374,15 +377,15 @@ La aplicamos.
 </script></section><section data-markdown><script type="text/template">
 La aplicación es una de las operaciones que podemos realizar con una función. En haskell lo expresamos con un espacio `" "`.
 </script></section><section data-markdown><script type="text/template">
-Por ejemplo, lo que en matemática haríamos de esta forma, $toCelcius(82)$, en haskell es como sigue:
+Por ejemplo, lo que en matemática haríamos de esta forma, $ftc(82)$, en haskell es como sigue:
 
 ```haskell
-r 82
+r 82.0
 -- 27.77777777777778
 ```
 
 <small>
-    aplicamos la función $toCelcius$ a un valor entero, $82$, obteniendo un valor de salida flotante, _27.77777777777778_.
+    aplicamos la función $ftc$ a un valor entero, $82$, obteniendo un valor de salida flotante, _27.77777777777778_.
 </small>
 </script></section><section data-markdown><script type="text/template">
 En terminos generales, podemos aplicar una función cualquiera a un valor cuyo **Tipo** sea el mismo que el **tipo de entrada** de la función. Y el resultado de la aplicación tendrá el tipo de salida de la misma.
@@ -390,46 +393,49 @@ En terminos generales, podemos aplicar una función cualquiera a un valor cuyo *
 En el ejemplo anterior
 
 ```haskell
-toCelcius 82 :: Float
+ftc 82.0 :: Float
 ```
 </script></section><section data-markdown><script type="text/template">
-Como se habrán dado cuenta, el símbolo :: lo hemos utilizado para declarar una función, pero también para decir el tipo de _2_ , 'C', o incluso _toCelcius 2_ ¿Qué nos sugiere esto?</script></section><section data-markdown><script type="text/template">
-    En haskell, al igual que en matemática, no diferenciamos lo que son funciones de los que son los valores. Es decir, una **función es un valor** que, al igual que el resto de los valores, tiene un **tipo**.
-
+Como se habrán dado cuenta, el símbolo :: lo hemos utilizado para declarar una función, pero también para decir el tipo de _2.0_ , 'C', o incluso _ftc 2.0_ ¿Qué nos sugiere esto?
+</script></section><section data-markdown><script type="text/template">
+En haskell, al igual que en matemática, no diferenciamos lo que son funciones de los que son los valores. Es decir, una **función es un valor** que, al igual que el resto de los valores, tiene un **tipo**.
 </script></section><section data-markdown><script type="text/template">
 En este caso, cuando indicamos 
 
 ```haskell
-toCelcius :: Int -> Float
+ftc :: Float -> Float
 ```
 
-estamos diciendo que el **tipo** de $r$ es _Int -> Float_ ¿Y esto qué implica? Si las funciones son "procesos" que reciben algo de un cierto tipo y devuelven otra cosa de un cierto tipo, y las funciones tienen un tipo, tiene sentido que una función pueda **recibir una función como parámetro de entrada**. Veamos cómo nos ayuda esto en la siguiente sección.
+estamos diciendo que el **tipo** de $ftc$ es _Float -> Float_ ¿Y esto qué implica? Si las funciones son "procesos" que reciben algo de un cierto tipo y devuelven otra cosa de un cierto tipo, y las funciones tienen un tipo, tiene sentido que una función pueda **recibir una función como parámetro de entrada**. Veamos cómo nos ayuda esto en la siguiente sección.
 
 </script></section><section data-markdown><script type="text/template"><!-- .slide: style="text-align: left" -->
 
+### Repaso
 ## Problemas
 
 Escribir expresiones que tengan los siguientes tipos
 
--  (Int,Int)
+-  (Int, Int)
 -  Float
 -  Char
 -  Int -> Int
--  Bool -> (Bool,Bool)
-
+-  Bool -> (Bool, Bool)
 </script></section><section data-markdown><script type="text/template">
 ## Geometría
 
-Existen situaciones en las cuales es conveniente expresar un problema a traves de un plano coordenado. Este se compone de dos ejes que representan dos variables. Por ejemplo el crecimiento de una población en función del tiempo.
+<small>
+    Existen situaciones en las cuales es conveniente expresar un problema a traves de un plano coordenado. Este se compone de dos ejes que representan dos variables. Por ejemplo el crecimiento de una población en función del tiempo.
+</small>
 
-<img src="../assets/worldGrowth.png" alt="Imagen poblacion" width="128" height="128">
+<img src="../static/worldGrowth.png" alt="Imagen poblacion" width="250" height="250">
 
-Tenemos una variable, cuyo valor depende de otra variable
+Caso de estudio: _Tenemos una variable, cuyo valor depende de otra variable_.
 </script></section><section data-markdown><script type="text/template">
-Expresemos, por ejemplo, la superficie de un terreno en función de uno de sus lados
+Expresemos, por ejemplo, la superficie de un terreno en función de uno de sus lados.
 
 <aside class="notes"><p>Escribir el problema matemáticamente, y después en Haskell</p>
-</aside></script></section><section data-markdown><script type="text/template">Sabemos que un punto es un dato en el plano al cual le podemos atribuir un valor, por lo tanto, podemos definir funciones como las siguientes:
+</aside></script></section><section data-markdown><script type="text/template">
+Sabemos que un punto es un dato en el plano al cual le podemos atribuir un valor, por lo tanto, podemos definir funciones como las siguientes:
 
 ```haskell
 abscisa :: (Float, Float) -> Float
@@ -439,13 +445,16 @@ abscisa :: (Float, Float) -> Float
 abscisa (x, y) = x
 ```
 <!-- .element: class="fragment" -->
+
 ```haskell
 ordenada :: (Float, Float) -> Float
 ```
+
 ```haskell
 ordenada (x, y) = y
 ```
 <!-- .element: class="fragment" -->
+
 <aside class="notes"><p>preguntar cómo es</p>
 </aside></script></section><section data-markdown><script type="text/template">
 Supongamos que queremos sumar dos puntos. La suma entre dos puntos la definiremos de la siguiente forma:
@@ -463,7 +472,8 @@ Cuando querramos recibir varios parámetros declararemos la función de la sigui
 *a0 -> a1 -> a2*
 
 Donde *a0* y *a1* son los tipos de entrada, y *a2* es el tipo de salida. _En general_, siempre el último tipo indicado es el tipo de salida. Pero ¿No era que las funciones recibían una cosa y devolvían otra? ¿Una función puede recibir más de una cosa? *Ya veremos...*
-</script></section><section data-markdown><script type="text/template">### Regiones en el plano
+</script></section><section data-markdown><script type="text/template">
+### Regiones en el plano
 
 Hagamos una función que nos diga si un punta dado *p* pertenece a una cierta región *r*.
 </script></section><section data-markdown><script type="text/template">
@@ -475,30 +485,255 @@ Una recta es una relación entre dos valores, uno del eje X y otro del eje Y. En
 </aside></script></section><section data-markdown><script type="text/template">
 A veces nos da mayor legibilidad guardar ciertas ideas en variables. 
 
-**Equivalencia**
-Así como en matémica decimos "Sea x una variable real" o "Donde f es una función" en haskell tenemos las cláusulas _**let**_ y _**where**_
+**Equivalencia**: Así como en matémica decimos "Sea x una variable real" o "Donde f es una función" en haskell tenemos las cláusulas _**let in**_ y _**where**_
 
-<aside class="notes"><p>Habría que explicar el let in, y el where</p>
+<aside class="notes"><p>Habría que explicar el <em>let in</em>, y el <em>where</em></p>
 </aside></script></section><section data-markdown><script type="text/template">
 **let in**
 
 Cláusula con la forma general:
+
 ```haskell
 let x1 = e1
     x2 = e2
 --  ...
 --  xn = en
-    in expresionQueUsaLasVariables
-```</script></section><section data-markdown><script type="text/template">
+in expresionQueUsaLasVariables
+```
+</script></section><section data-markdown><script type="text/template">
 **where**
+
 Cláusula con la forma general:
+
 ```haskell
 expresionQueUsa x1 x2 ... xn
 	where x1 = e1
 	      x2 = e2
 	      ...
 	      xn = en
-```</script></section><section data-markdown><script type="text/template"></script></section></section></div>
+```
+</script></section><section data-markdown><script type="text/template">
+</script></section></section><section ><section data-markdown><script type="text/template">
+# HASKELL
+</script></section><section data-markdown><script type="text/template">
+## Repaso
+# Rápido <!-- .element: class="fragment"-->
+</script></section><section data-markdown><script type="text/template">
+### Operadores Aritméticos
+
+```haskell
+ghci> 2 + 15  
+17  
+ghci> 49 * 100  
+4900  
+ghci> 1892 - 1472  
+420  
+ghci> 5 / 2  
+2.5  
+ghci>
+```
+</script></section><section data-markdown><script type="text/template">
+#### Operadores Aritméticos combinados
+
+```haskell
+ghci> (50 * 100) - 4999  
+1  
+ghci> 50 * 100 - 4999  
+1  
+ghci> 50 * (100 - 4999)  
+-244950
+ghci>
+```
+</script></section><section data-markdown><script type="text/template">
+### Operadores Booleanos
+
+```haskell
+ghci> True && False  
+False  
+ghci> True && True  
+True  
+ghci> False || True  
+True   
+ghci> not False  
+True  
+ghci> not (True && True)  
+False
+ghci>
+```
+</script></section><section data-markdown><script type="text/template">
+### Igualdad
+
+```haskell
+ghci> 5 == 5  
+True  
+ghci> 1 == 0  
+False  
+ghci> 5 /= 5  
+False  
+ghci> 5 /= 4  
+True  
+ghci> "hello" == "hello"  
+True
+ghci>
+```
+</script></section><section data-markdown><script type="text/template">
+## Definimos Funciones
+
+```haskell
+doubleMe x = x + x 
+```
+</script></section><section data-markdown><script type="text/template">
+## Aplicamos Funciones
+
+```haskell
+ghci> doubleMe 9  
+18  
+ghci> doubleMe 8.3  
+16.6
+ghci>
+```
+</script></section><section data-markdown><script type="text/template">
+## Funciones con más de un parámetro
+
+```haskell
+doubleUs x y = x*2 + y*2 
+```
+</script></section><section data-markdown><script type="text/template">
+## Aplicamos
+
+```haskell
+ghci> doubleUs 4 9  
+26  
+ghci> doubleUs 2.3 34.2  
+73.0  
+ghci> doubleUs 28 88 + doubleMe 123  
+478
+ghci
+```
+</script></section><section data-markdown><script type="text/template">
+## Reutilizamos definiciones
+
+```haskell
+-- doubleMe x = x + x
+-- doubleUs x y = x*2 + y*2
+doubleUs x y = doubleMe x + doubleMe y 
+```
+</script></section><section data-markdown><script type="text/template">
+## Funciones partidas. Cómo?
+</script></section><section data-markdown><script type="text/template">
+```haskell
+doubleSmallNumber x = if x > 100  
+                        then x
+                        else x * 2  
+```
+</script></section><section data-markdown><script type="text/template">
+```haskell
+-- doubleSmallNumber' x = (doubleSmallNumber x) + 1
+doubleSmallNumber' x = (if x > 100 then x else x * 2) + 1
+```
+</script></section><section data-markdown><script type="text/template">
+## Sintaxis en Funciones
+</script></section><section data-markdown><script type="text/template">
+### Pattern Matching
+
+Consiste en una especificación de pautas que deben ser seguidas por los datos, los cuales pueden ser deconstruidos permitiéndonos acceder a sus componentes.
+
+<img src="../static/meme_negro_confundido.jpg" class="fragment" alt="Imagen poblacion">
+</script></section><section data-markdown><script type="text/template">
+Llevandolo a lo que conocemos hasta ahora... Cuando nosotros definiamos una función planteabamos casos de ejemplo para guiarnos al buscar un término general.
+
+```haskell
+-- doubleMe 2 = 4
+-- doubleMe 3 = 6
+-- doubleMe 4 = 8
+doubleMe x = x + x
+```
+</script></section><section data-markdown><script type="text/template">
+Pero, **¿Qué pasa si uno de los casos no puede obtenerse con el caso general?**
+</script></section><section data-markdown><script type="text/template">
+Para eso nos sirve el **Pattern Matching**, para definir casos en base al parámetro de entrada!!
+</script></section><section data-markdown><script type="text/template">
+```haskell
+lucky :: Int -> String
+lucky 7 = "Uyy, un sieteeee ¡Genial!"
+lucky x = "Meh, no me interesa"
+```
+</script></section><section data-markdown><script type="text/template">
+Cuando llamamos a **lucky**, los patrones son verificados de arriba a abajo y cuando un patrón concuerda con el valor asociado, se utiliza el cuerpo de la función asociado. 
+
+En este caso, la única forma de que un número concuerde con el primer patrón es que dicho número sea 7. Si no lo es,se evaluara el siguiente patrón, el cual coincide con cualquier valor y lo liga a x.
+</script></section><section data-markdown><script type="text/template">
+También se podría haber implementado utilizando una sentencia **if**. Pero, ¿qué pasaría si quisiéramos una función que nombrara los número del 1 al 5, o "No entre uno 1 y 5" para cualquier otro número?
+
+Si no tuviéramos el ajuste de patrones deberíamos escribir una gran cantidad de **if then else**. Sin embargo con él:
+</script></section><section data-markdown><script type="text/template">
+```haskell
+sayMe :: Int -> String
+sayMe 1 = "Uno"
+sayMe 2 = "Dos"
+sayMe 3 = "Tres"
+sayMe 4 = "Cuatro"
+sayMe 5 = "Cinco"
+sayMe x = "No entre uno 1 y 5"
+```
+</script></section><section data-markdown><script type="text/template">
+### Guardas
+</script></section><section data-markdown><script type="text/template">
+Otra forma de analizar un valor entrada, es pidiendo que cumpla cierta _proposición_. Para ello usamos **guardas**.
+</script></section><section data-markdown><script type="text/template">
+Una guarda está compuesta por una expresión proposicional con la variable de entrada y un valor que retorna la función en caso de cumplirse. Al tener varias guardas, se analiza la primera, y si esta falla se continúa analizando la siguiente. Así hasta que alguna de verdadero.
+</script></section><section data-markdown><script type="text/template">
+```haskell
+doubleSmallNumber x
+    | x > 100 = x
+    | otherwise = x * 2
+```
+</script></section><section data-markdown><script type="text/template">
+## Práctica
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+### Funciones
+
+- Declarar y definir las siguientes funciones
+
+|Función|Explicación|
+|:---|:---|
+|seven|que dado cualquier valor, devuelve 7.|
+|sign|que dado un entero devuelve 1 si es positivo, -1 si es negativo y 0 si es cero.|
+|absolute|la función valor absoluto (usando la función **sign** y sin usarla)|
+|and', or', not', xor'|las operaciones booleanas estándar, **sin utilizar las funciones predefinidas** en Haskell.|
+|swap|toma un par ordenado, y devuelve un par ordenado con sus componentes en orden inverso|
+<!-- .element: style="font-size: 25px" -->
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+- Reescribir las siguientes funciones sin el uso de let, where o if then else cuando sea
+posible.
+
+  - ```haskell
+  f x = let (y,z) = (x,x) in y
+  ```
+
+  - ```haskell
+  greaterThan (x,y) = if x > y
+                          then True
+                          else False
+  ```
+
+  - ```haskell
+  f (x,y) = let z = x + y 
+               in g (z,y) where g (a,b) = a - b
+  ```
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+- Redefinir la función power4 de dos formas diferentes
+
+```haskell
+power4 x = let sqr y = y * y
+            in sqr (sqr x)
+```</script></section></section></div>
     </div>
 
     <script src="./lib/js/head.min.js"></script>

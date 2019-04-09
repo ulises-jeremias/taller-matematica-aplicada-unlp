@@ -104,12 +104,12 @@ Definiendo funciones.
 Aunque después vamos a ver el concepto de función más formalmente en la materia, podemos dar una definición más natural:
 
 <small class="fragment">
-  Una _**función**_ es una caja que recibe uno, o más, elementos de un cierto _tipo_ y devuelve una sóla cosa de algún otro _tipo_. Es importante el concepto de que sólo se devuelve un único elemento.
+  Una _**función**_ es una caja que recibe uno, o más, elementos de un cierto _tipo_ y devuelve una sóla cosa de algún otro _tipo_. Es importante el concepto de que sólo se devuelve un elemento.
 </small>
 
 ----
 
-En Haskell es muy útil e importante definir las funciones, así como en R-Info definían variables. Veamos como se declaran paso a paso.
+En Haskell es muy útil e importante declarar las funciones, así como en R-Info se definían variables. Veamos como se declaran y definen paso a paso.
 
 Note: Mostrar en el pizarron paso a paso como declarar y definir una función.
 
