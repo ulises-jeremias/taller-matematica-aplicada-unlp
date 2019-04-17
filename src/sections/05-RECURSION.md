@@ -6,7 +6,6 @@ Antes de ver este tema vamos a revisar un concepto muy importante:
 
 ----
 
-### Problema
 ## Ejemplo
 
 ----
@@ -15,7 +14,7 @@ Antes de ver este tema vamos a revisar un concepto muy importante:
 inf :: Int
 inf = 1 + inf
 ```
-
+<!-- .element: contenteditable="true" -->
 ----
 
 ```haskell
@@ -24,7 +23,7 @@ seven _ = 7
 
 -- seven inf = ??
 ```
-
+<!-- .element: contenteditable="true" -->
 ----
 
 ```haskell
@@ -33,7 +32,7 @@ fst (x, _) = x
 
 -- fst (0, inf) = ??
 ```
-
+<!-- .element: contenteditable="true" -->
 ----
 
 ## Qué pasa??
@@ -67,7 +66,7 @@ Veamos el siguiente como reduce la expresión:
 ```haskell
 seven inf
 ```
-
+<!-- .element: contenteditable="true" -->
 ----
 
 <!-- .slide: style="text-align: left" -->
@@ -131,7 +130,7 @@ Para entender las decisiones de implementación del lenguaje vamos a definir uno
 bottom :: a
 bottom = bottom
 ```
-
+<!-- .element: contenteditable="true" -->
 ----
 
 ## Bottom y Funciones
@@ -149,7 +148,7 @@ const x _ = x
 
 -- const 7 inf = ??
 ```
-
+<!-- .element: contenteditable="true" -->
 <small>
     Si la función precisa el valor de los parámetros para dar un resultado, entonces
     es estricta.
@@ -192,7 +191,7 @@ Primeros los redexes externos
 ```haskell
 quin x = x + x + x + x + x
 ```
-
+<!-- .element: contenteditable="true" -->
 <small>
     Sabemos que (fib 22) cuesta ~1.000.000 reducciones
 </small>
@@ -203,7 +202,7 @@ quin x = x + x + x + x + x
 -- cuantas reducciones?
 quin (fib 22)
 ```
-
+<!-- .element: contenteditable="true" -->
 ----
 
 ### Ejemplo 2
@@ -212,7 +211,7 @@ quin (fib 22)
 -- cuantas reducciones
 const 3 (quin (fin 22))
 ```
-
+<!-- .element: contenteditable="true" -->
 ----
 
 ## Y Haskell??
@@ -230,3 +229,99 @@ const 3 (quin (fin 22))
 Evaluación normal con **mejora de eficiencia**
 
 -  _recordar_ que las copias de un argumento son el mismo valor, para no replicar trabajo.
+
+----
+
+#### Ejemplo
+
+```haskell
+ones = 1:ones
+
+-- take 10 ones = ??
+```
+<!-- .element: contenteditable="true" -->
+----
+
+# Currificación
+
+----
+
+```haskell
+inc :: Int -> Int
+inc x = 1 + x
+
+suma :: Int -> Int -> Int
+suma x y = x + y
+
+-- inc x = suma 1 x ??
+```
+<!-- .element: contenteditable="true" -->
+----
+
+# Funciones Lambda
+
+----
+
+-  Necesita una función que no vamos a referenciar, tener un nombre??
+-  Si queremos devolver una función como valor de retorno
+    -  Necesita estar previamente definida??
+
+----
+
+### Ejemplo
+
+```haskell
+inc :: Int -> Int
+-- inc x = 1 + x
+inc = \x -> 1 + x
+```
+<!-- .element: contenteditable="true" -->
+----
+
+# Recursión
+
+----
+
+```haskell
+let list = [1, 2, 5, 8, 0, 10]
+
+list !! 3
+-- 8
+```
+<!-- .element: contenteditable="true" -->
+----
+
+```haskell
+let fibs = 0 : 1 : [ n | x <-[2..], let n = ((fibs !! (x-1)) + (fibs !! (x-2))) ]
+
+fib :: Int -> Int
+fib x = fibs !! x
+```
+<!-- .element: contenteditable="true" style="font-size: 17px" -->
+----
+
+```haskell
+-- Analizar
+fibs' a b = a:fibs' b (a+b)
+-- fibs = fibs' 0 1 ??
+```
+<!-- .element: contenteditable="true" -->
+----
+
+Con recursión,
+
+```haskell
+fib :: Int -> Int
+fib 0 = 0
+fib 1 = 1
+fib n = ... ??
+```
+
+----
+
+```haskell
+fib :: Int -> Int
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+```
