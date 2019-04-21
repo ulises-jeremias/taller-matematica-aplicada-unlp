@@ -52,16 +52,16 @@ En nuestro caso queremos utilizar reducciones para llegar al valor de un expresi
 
 ----
 
-## Cómo hacemos?
+## ¿Cómo hacemos?
 
 ----
 
-### Hasta donde lo hacemos?
-## Se reduce infinitamente?!
+### ¿Hasta donde lo hacemos?
+## ¡¿Se reduce infinitamente?!
 
 ----
 
-Veamos el siguiente como reduce la expresión:
+Veamos en el siguiente ejemplo cómo se reduce la expresión:
 
 ```haskell
 seven inf
@@ -79,9 +79,9 @@ seven inf
 
 ----
 
-## Cual tiene haskell?
+## ¿Cual tiene haskell?
 
-Ninguna <!-- .element: class="fragment" -->
+Ninguna de las anteriores <!-- .element: class="fragment" -->
 
 ----
 
@@ -105,9 +105,9 @@ Para entender las decisiones de implementación del lenguaje vamos a definir uno
 ----
 
 -  Normalización
--  La forma normal es única?
+-  ¿La forma normal es única?
 -  Ordenes de reducción
-    -  Hay una única forma de reducir? Todas equivalentes?
+    -  ¿Hay una única forma de reducir? ¿Son todas equivalentes?
 
 ----
 
@@ -325,3 +325,66 @@ fib 0 = 0
 fib 1 = 1
 fib n = fib (n-1) + fib (n-2)
 ```
+
+----
+
+### Práctica
+
+----
+
+<!-- .slide: style="text-align: left" -->
+
+## Reducciones
+
+- Reducir las siguientes expresiones en forma aplicativa y normal. Indicar qué funciones son estrictas, y cuáles no.
+
+  - ```haskell 
+    por5 (doble 2 + doble 3)
+    ```
+
+  - ```haskell
+     seven inf 
+    ```
+  - ```haskell
+    first (seven, inf)
+    ```
+
+  - ```haskell
+    head [x | x <- [1..], x esPar]
+    ```
+
+  - ```haskell
+    min ([0] ++ [1..])
+    ```
+----
+
+<!-- .slide: style="text-align: left" -->
+
+## Lambdas
+
+<!-- .slide: style="text-align: left" -->
+
+- Redefinir las siguientes funciones con funciones anónimas
+
+  - ```haskell
+    inc x = x + 1
+    ```
+  - ```haskell
+    apply f x = f x
+    ```
+  - ```haskell
+    flip f x y = f y x --función que permite pasar los parametros al reves
+    ```
+
+----
+
+<!-- .slide: style="text-align: left" -->
+
+## Recursión
+
+<!-- .slide: style="text-align: left" -->
+
+- Definir recursivamente las siguientes funciones
+
+- power: toma un numero y un natural, devolviendo el resultado de elevar el primero a la potencia del segundo
+- prime: decide si el numero pasado es primo
