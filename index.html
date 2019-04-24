@@ -733,7 +733,628 @@ posible.
 ```haskell
 power4 x = let sqr y = y * y
             in sqr (sqr x)
-```</script></section></section></div>
+```
+</script></section></section><section ><section data-markdown><script type="text/template">
+# CONJUNTOS
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+## Conjunto
+
+Un **conjunto** es una colección de elementos con características similares considerada en sí misma como un objeto.
+
+Se dice que un elemento (o miembro) pertenece al conjunto si está definido como incluido de algún modo dentro de él.
+</script></section><section data-markdown><script type="text/template">
+Un conjunto suele definirse mediante una **propiedad que todos sus elementos poseen**. Por ejemplo, para los _números naturales_, si se considera la propiedad de ser un número primo, el conjunto de los números primos es:
+
+$P = \{2, 3, 5, 7, 11, 13, \ldots \}$
+</script></section><section data-markdown><script type="text/template">
+Conocer las distintas propiedades y operaciones que se pueden aplicar a conjuntos nos permite introducir el siguiente concepto de Haskell.
+</script></section><section data-markdown><script type="text/template">
+# Listas
+
+<aside class="notes"><p>Mostrar operaciones básicas como funciones.</p>
+</aside></script></section><section data-markdown><script type="text/template">
+En esta clase vamos a ver algunos de los conceptos más importantes del taller:
+
+-  Bases sobre las listas
+-  Cadenas de texto
+-  **Listas**
+</script></section><section data-markdown><script type="text/template">
+En Haskell, las listas son una estructura **homogénea**. Almacena varios elementos del mismo tipo. 
+
+<small>
+    Esto significa que podemos crear una lista de enteros o una lista de caracteres, pero no podemos crear una lista que tenga unos cuantos enteros y otros cuantos caracteres.
+</small>
+</script></section><section data-markdown><script type="text/template">
+```haskell
+ghci> let lostNumbers = [4, 8, 15, 16, 23, 42]
+ghci> lostNumbers
+[4, 8, 15, 16, 23, 42]
+```
+
+<small>
+    Las listas se definen mediante corchetes y sus valores se separan por comas.
+</small>
+</script></section><section data-markdown><script type="text/template">
+En general, se escribe entre '[' y ']' y sus elementos separados por ','
+
+```haskell
+[1, 2, 3]
+[True,  True, False]
+['y', 'o', 'l', 'o']
+```
+</script></section><section data-markdown><script type="text/template">
+```haskell
+[1, 2, 'a', 3, 'b', 'c', 4]
+```
+
+<small>
+    Si intentáramos crear una lista como esta Haskell nos avisaría que los caracteres no son números.
+</small>
+</script></section><section data-markdown><script type="text/template">
+Las cadenas de texto son listas de caracteres.
+
+```haskell
+"hello"
+['h', 'e', 'l', 'l', 'o']
+```
+</script></section><section data-markdown><script type="text/template">
+Tipo de una lista
+
+```haskell
+[2,3,4] :: [Int]
+['a', 'b', 'c'] :: [Char]
+```
+</script></section><section data-markdown><script type="text/template">
+## Tipo de [ ] ??
+
+`[] :: [a]` <!-- .element: class="fragment" -->
+</script></section><section data-markdown><script type="text/template">
+Dos operaciones básicas que podemos realizar con ellas son:
+
+```haskell
+(++) :: [a] -> [a] -> [a]
+-- función que concatena dos listas
+
+(:) :: a -> [a] -> [a]
+-- función que agrega un elemento al principio de la lista
+```
+</script></section><section data-markdown><script type="text/template">
+### Concatenación
+
+```haskell
+ghci> [1,2,3,4] ++ [9,10,11,12]
+[1,2,3,4,9,10,11,12]
+ghci> "hello" ++ " " ++ "world"
+"hello world"
+ghci> ['w','o'] ++ ['o','t']
+"woot"
+```
+</script></section><section data-markdown><script type="text/template">
+### Cons
+
+```haskell
+ghci> 'U':"n gato negro"
+"Un gato negro"
+ghci> 5:[1,2,3,4,5]
+[5,1,2,3,4,5]
+```
+</script></section><section data-markdown><script type="text/template">
+`[1,2,3]` es una alternativa sintáctica de `1:2:3:[]`. 
+
+-  `[]` es una lista vacía. Si anteponemos 3 a ella con `:`, obtenemos `[3]`, y si anteponemos 2 a esto obtenemos `[2,3]`.
+
+<aside class="notes"><p>Desambiguar listas vacias</p>
+</aside></script></section><section data-markdown><script type="text/template">
+`[], [[]] y [[],[],[]]`
+</script></section><section data-markdown><script type="text/template">
+## Funciones básicas sobre listas
+</script></section><section data-markdown><script type="text/template">
+### Head
+
+Toma una lista y devuelve su cabeza. La cabeza de una lista es básicamente el primer elemento.
+
+```haskell
+ghci> head [5, 4, 3, 2, 1]
+5
+```
+</script></section><section data-markdown><script type="text/template">
+### Tail
+
+Toma una lista y devuelve su cola. En otros palabras,  corta la cabeza de la lista.
+
+```haskell
+ghci> tail [5, 4, 3, 2, 1]
+[4, 3, 2, 1]
+```
+</script></section><section data-markdown><script type="text/template">
+### Last
+
+Toma una lista y devuelve su último elemento.
+
+```haskell
+ghci> last [5, 4, 3, 2, 1]
+1
+```
+</script></section><section data-markdown><script type="text/template">
+### Init
+
+Toma una lista y devuelve toda la lista excepto su último elemento.
+
+```haskell
+ghci> init [5, 4, 3, 2, 1]
+[5, 4, 3, 2]
+```
+</script></section><section data-markdown><script type="text/template">
+### Length
+
+Toma una lista y obviamente devuelve su tamaño.
+
+```haskell
+ghci> length [5,4,3,2,1]
+5
+```
+</script></section><section data-markdown><script type="text/template">
+### Null
+
+Comprueba si una lista está vacía. Si lo está, devuelve True, en caso contrario devuelve False. Usa esta función en lugar de xs == [] (si tienes una lista que se llame xs).
+
+```haskell
+ghci> null [1,2,3]
+False
+ghci> null []
+True
+reverse pone del revés una lista.
+ghci> reverse [5,4,3,2,1]
+[1,2,3,4,5]
+```</script></section><section data-markdown><script type="text/template">
+### take
+
+Toma un número y una lista y extrae dicho número de elementos de una lista. Observa.
+
+```haskell
+ghci> take 3 [5,4,3,2,1]
+[5,4,3]
+ghci> take 1 [3,9,3]
+[3]
+ghci> take 5 [1,2]
+[1,2]
+ghci> take 0 [6,6,6]
+[]
+```
+
+Si intentamos tomar más elementos de los que hay en una lista, simplemente devuelve la lista. Si tomamos 0 elementos, obtenemos una lista vacía.
+</script></section><section data-markdown><script type="text/template">### Drop
+
+Funciona de forma similar, solo que quita un número de elementos del comienzo de la lista.
+
+```haskell
+ghci> drop 3 [8,4,2,1,5,6]
+[1,5,6]
+ghci> drop 0 [1,2,3,4]
+[1,2,3,4]
+ghci> drop 100 [1,2,3,4]
+[]
+```
+</script></section><section data-markdown><script type="text/template">
+### Maximum y minimun
+
+Maximun toma una lista de cosas que se pueden poner en algún tipo de orden y devuelve el elemento más grande. Minimum devuelve el más pequeño.
+
+```haskell
+ghci> minimum [8,4,2,1,5,6]
+1
+ghci> maximum [1,9,2,3,4]
+9
+```</script></section><section data-markdown><script type="text/template">
+### sum
+
+Toma una lista de números y devuelve su suma.
+product toma una lista de números y devuelve su producto.
+
+```haskell
+ghci> sum [5,2,1,6,3,2,5,7]
+31
+ghci> product [6,2,1,2]
+24
+ghci> product [1,2,5,6,7,9,2,0]
+0
+```
+</script></section><section data-markdown><script type="text/template">
+### Elem
+
+Toma una cosa y una lista de cosas y nos dice si dicha cosa es un elemento de la lista. Normalmente, esta función es llamada de forma infija porque resulta más fácil de leer.
+
+```haskell
+ghci> 4 `elem` [3,4,5,6]
+True
+ghci> 10 `elem` [3,4,5,6]
+False
+```
+</script></section><section data-markdown><script type="text/template">
+## Rangos
+</script></section><section data-markdown><script type="text/template">
+### Ejemplo
+
+```haskell
+ghci> [1..20]
+[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+ghci> ['a'..'z']
+"abcdefghijklmnopqrstuvwxyz"
+ghci> ['K'..'Z']
+"KLMNOPQRSTUVWXYZ"
+```
+</script></section><section data-markdown><script type="text/template">
+```haskell
+ghci> [2,4..20]
+[2,4,6,8,10,12,14,16,18,20]
+ghci> [3,6..20]
+[3,6,9,12,15,18]
+```
+</script></section><section data-markdown><script type="text/template">
+```haskell
+ghci> [0.1, 0.3 .. 1]
+[0.1,0.3,0.5,0.7,0.8999999999999999,1.0999999999999999]
+```
+
+Consejo: No utilizar rangos con números en coma flotante.
+</script></section><section data-markdown><script type="text/template">
+## Listas por Comprensión
+</script></section><section data-markdown><script type="text/template">
+Si quisiéramos escribir esto en Haskell, podríamos usar algo como 
+
+```haskell
+take 10 [2, 4 ..]
+```
+
+<small>
+    Pero, ¿y si no quisiéramos los dobles de los diez primeros número naturales, sino algo más complejo?
+</small>
+</script></section><section data-markdown><script type="text/template">
+```haskell
+ghci> [x*2 | x <- [1..10]]
+[2,4,6,8,10,12,14,16,18,20]
+```
+</script></section><section data-markdown><script type="text/template">
+**Agregando condiciones**
+
+```haskell
+ghci> [x*2 | x <- [1..10], x*2 >= 12]
+[12,14,16,18,20]
+```
+</script></section><section data-markdown><script type="text/template">
+```haskell
+ghci> [ x*y | x <- [2,5,10], y <- [8,10,11]]
+[16,20,22,40,50,55,80,100,110]
+```
+</script></section><section data-markdown><script type="text/template">
+```haskell
+ghci> [ x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]
+[55,80,100,110]
+```
+</script></section><section data-markdown><script type="text/template">
+### Length
+</script></section><section data-markdown><script type="text/template">
+```haskell
+length' :: [a] -> Int
+length' xs = ...
+```
+</script></section><section data-markdown><script type="text/template">
+```haskell
+length' :: [a] -> Int
+length' xs = sum [ 1 | _ <- xs ]
+```
+</script></section></section><section ><section data-markdown><script type="text/template">
+# Recursión
+</script></section><section data-markdown><script type="text/template">
+Antes de ver este tema vamos a revisar un concepto muy importante:
+</script></section><section data-markdown><script type="text/template">
+## Ejemplo
+</script></section><section data-markdown><script type="text/template">
+```haskell
+inf :: Int
+inf = 1 + inf
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+```haskell
+seven :: a -> Int
+seven _ = 7
+
+-- seven inf = ??
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+```haskell
+fst :: (a, b) -> a
+fst (x, _) = x
+
+-- fst (0, inf) = ??
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+## Qué pasa??
+</script></section><section data-markdown><script type="text/template">
+### Denotacional vs Operacional
+# Reducción
+</script></section><section data-markdown><script type="text/template">
+La reducción es un _sistema de reescritura_. Se usa en distintos ámbitos, pero la esencia es la misma: **Reemplazar subtérminos de una fórmula (o expresión) con otros términos**.
+</script></section><section data-markdown><script type="text/template">
+En nuestro caso queremos utilizar reducciones para llegar al valor de un expresión. En otras palabras, queremos **reducir** una *expresión* a su *valor*.
+</script></section><section data-markdown><script type="text/template">
+## ¿Cómo hacemos?
+</script></section><section data-markdown><script type="text/template">
+### ¿Hasta donde lo hacemos?
+## ¡¿Se reduce infinitamente?!
+</script></section><section data-markdown><script type="text/template">
+Veamos en el siguiente ejemplo cómo se reduce la expresión:
+
+```haskell
+seven inf
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+## Formas de Reducción
+
+-  Forma normal
+
+-  Formal aplicativa
+</script></section><section data-markdown><script type="text/template">
+## ¿Cual tiene haskell?
+
+Ninguna de las anteriores <!-- .element: class="fragment" -->
+</script></section><section data-markdown><script type="text/template">
+Para entender las decisiones de implementación del lenguaje vamos a definir unos conceptos claves:
+</script></section><section data-markdown><script type="text/template">
+## Reducción
+
+-  Redex (reducible expression)
+  -  subexpresión que coincide con una instancia del lado izquierdo de una ecuación
+
+-  Forma normal
+  Expresión que no contiene redexes
+
+-  Mecanismo de Reducción
+    1.  Localizar un redex
+    2.  Reemplazarlo
+    3.  Repetir hasta que la expresión esté en forma normal
+</script></section><section data-markdown><script type="text/template">
+-  Normalización
+-  ¿La forma normal es única?
+-  Ordenes de reducción
+    -  ¿Hay una única forma de reducir? ¿Son todas equivalentes?
+</script></section><section data-markdown><script type="text/template">
+## Normalización
+
+-  Forma normal
+    -  Expresión que no se puede reducir
+    -  _Valor_
+
+-  No toda expresión tiene forma normal!
+    -  e.g. **inf**
+    -  Valor denotacional, _Bottom_
+    -  Valor operacional
+</script></section><section data-markdown><script type="text/template">
+## Bottom
+
+```haskell
+bottom :: a
+bottom = bottom
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+## Bottom y Funciones
+
+-  Funciones Estrictas
+-  Funciones NO Estrictas
+</script></section><section data-markdown><script type="text/template">
+## Funciones No Estrictas
+
+```haskell
+const :: a -> b -> a
+const x _ = x
+
+-- const 7 inf = ??
+```
+<!-- .element: contenteditable="true" -->
+<small>
+    Si la función precisa el valor de los parámetros para dar un resultado, entonces
+    es estricta.
+</small>
+</script></section><section data-markdown><script type="text/template">
+## Orden de Evaluación
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+### Orden APLICATIVO
+
+Primero los redexes internos
+
+-  Es decir, primero los argumentos y luego la aplicación
+-  TODAS LAS FUNCIONES SON ESTRICTAS
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+### Orden NORMAL
+
+Primeros los redexes externos
+
+-  Primero la aplicación y, si aún están, los argumentos
+-  Hay funciones estrictas y no estrictas
+</script></section><section data-markdown><script type="text/template">
+## Ejemplos
+</script></section><section data-markdown><script type="text/template">
+### Ejemplo 1
+
+```haskell
+quin x = x + x + x + x + x
+```
+<!-- .element: contenteditable="true" -->
+<small>
+    Sabemos que (fib 22) cuesta ~1.000.000 reducciones
+</small>
+</script></section><section data-markdown><script type="text/template">
+```haskell
+-- cuantas reducciones?
+quin (fib 22)
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+### Ejemplo 2
+
+```haskell
+-- cuantas reducciones
+const 3 (quin (fin 22))
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+## Y Haskell??
+</script></section><section data-markdown><script type="text/template">
+# Lazy Evaluation
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+### Lazy Evaluation
+
+Evaluación normal con **mejora de eficiencia**
+
+-  _recordar_ que las copias de un argumento son el mismo valor, para no replicar trabajo.
+</script></section><section data-markdown><script type="text/template">
+#### Ejemplo
+
+```haskell
+ones = 1:ones
+
+-- take 10 ones = ??
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+# Currificación
+</script></section><section data-markdown><script type="text/template">
+```haskell
+inc :: Int -> Int
+inc x = 1 + x
+
+suma :: Int -> Int -> Int
+suma x y = x + y
+
+-- inc x = suma 1 x ??
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+# Funciones Lambda
+</script></section><section data-markdown><script type="text/template">
+-  Necesita una función que no vamos a referenciar, tener un nombre??
+-  Si queremos devolver una función como valor de retorno
+    -  Necesita estar previamente definida??
+</script></section><section data-markdown><script type="text/template">
+### Ejemplo
+
+```haskell
+inc :: Int -> Int
+-- inc x = 1 + x
+inc = \x -> 1 + x
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+# Recursión
+</script></section><section data-markdown><script type="text/template">
+```haskell
+let list = [1, 2, 5, 8, 0, 10]
+
+list !! 3
+-- 8
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+```haskell
+let fibs = 0 : 1 : [ n | x <-[2..], let n = ((fibs !! (x-1)) + (fibs !! (x-2))) ]
+
+fib :: Int -> Int
+fib x = fibs !! x
+```
+<!-- .element: contenteditable="true" style="font-size: 17px" -->
+</script></section><section data-markdown><script type="text/template">
+```haskell
+-- Analizar
+fibs' a b = a:fibs' b (a+b)
+-- fibs = fibs' 0 1 ??
+```
+<!-- .element: contenteditable="true" -->
+</script></section><section data-markdown><script type="text/template">
+Con Recursión y Pattern Matching,
+
+```haskell
+fib :: Int -> Int
+fib 0 = 0
+fib 1 = 1
+fib n = ... ??
+```
+</script></section><section data-markdown><script type="text/template">
+```haskell
+fib :: Int -> Int
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+```
+</script></section><section data-markdown><script type="text/template">
+### Práctica
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+## Reducciones
+
+- Reducir las siguientes expresiones en forma aplicativa y normal. Indicar qué funciones son estrictas, y cuáles no.
+
+  - ```haskell 
+    quin (doble 2 + doble 3)
+    ```
+
+  - ```haskell
+    first (seven, inf)
+    ```
+
+  - ```haskell
+    head [x | x <- [1..], x esPar]
+    ```
+
+  - ```haskell
+    min ([0] ++ [1..])
+    ```</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+## Lambdas
+
+<!-- .slide: style="text-align: left" -->
+
+- Redefinir las siguientes funciones con funciones anónimas
+
+  - ```haskell
+    inc x = x + 1
+    ```
+  - ```haskell
+    apply f x = f x
+    ```
+  - ```haskell
+    -- función que permite pasar los parametros al reves
+    flip f x y = f y x
+    ```
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+## Recursión
+
+<!-- .slide: style="text-align: left" -->
+
+Definir recursivamente las siguientes funciones:
+
+- power: toma un numero y un natural, devolviendo el resultado de elevar el primero a la potencia del segundo.
+
+- prime: decide si el numero pasado es primo.
+</script></section></section></div>
     </div>
 
     <script src="./lib/js/head.min.js"></script>
