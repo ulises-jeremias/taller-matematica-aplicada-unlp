@@ -15,6 +15,7 @@ inf :: Int
 inf = 1 + inf
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 ```haskell
@@ -24,6 +25,7 @@ seven _ = 7
 -- seven inf = ??
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 ```haskell
@@ -33,6 +35,7 @@ fst (x, _) = x
 -- fst (0, inf) = ??
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 ## Qué pasa??
@@ -67,6 +70,7 @@ Veamos en el siguiente ejemplo cómo se reduce la expresión:
 seven inf
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 <!-- .slide: style="text-align: left" -->
@@ -131,6 +135,7 @@ bottom :: a
 bottom = bottom
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 ## Bottom y Funciones
@@ -203,6 +208,7 @@ quin x = x + x + x + x + x
 quin (fib 22)
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 ### Ejemplo 2
@@ -212,6 +218,7 @@ quin (fib 22)
 const 3 (quin (fin 22))
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 ## Y Haskell??
@@ -240,6 +247,7 @@ ones = 1:ones
 -- take 10 ones = ??
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 # Currificación
@@ -256,6 +264,7 @@ suma x y = x + y
 -- inc x = suma 1 x ??
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 # Funciones Lambda
@@ -276,6 +285,7 @@ inc :: Int -> Int
 inc = \x -> 1 + x
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 # Recursión
@@ -289,6 +299,7 @@ list !! 3
 -- 8
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
 ```haskell
@@ -298,6 +309,7 @@ fib :: Int -> Int
 fib x = fibs !! x
 ```
 <!-- .element: contenteditable="true" style="font-size: 17px" -->
+
 ----
 
 ```haskell
@@ -306,9 +318,10 @@ fibs' a b = a:fibs' b (a+b)
 -- fibs = fibs' 0 1 ??
 ```
 <!-- .element: contenteditable="true" -->
+
 ----
 
-Con recursión,
+Con Recursión y Pattern Matching,
 
 ```haskell
 fib :: Int -> Int
@@ -339,12 +352,9 @@ fib n = fib (n-1) + fib (n-2)
 - Reducir las siguientes expresiones en forma aplicativa y normal. Indicar qué funciones son estrictas, y cuáles no.
 
   - ```haskell 
-    por5 (doble 2 + doble 3)
+    quin (doble 2 + doble 3)
     ```
 
-  - ```haskell
-     seven inf 
-    ```
   - ```haskell
     first (seven, inf)
     ```
@@ -373,7 +383,8 @@ fib n = fib (n-1) + fib (n-2)
     apply f x = f x
     ```
   - ```haskell
-    flip f x y = f y x --función que permite pasar los parametros al reves
+    -- función que permite pasar los parametros al reves
+    flip f x y = f y x
     ```
 
 ----
@@ -384,7 +395,8 @@ fib n = fib (n-1) + fib (n-2)
 
 <!-- .slide: style="text-align: left" -->
 
-- Definir recursivamente las siguientes funciones
+Definir recursivamente las siguientes funciones:
 
-- power: toma un numero y un natural, devolviendo el resultado de elevar el primero a la potencia del segundo
-- prime: decide si el numero pasado es primo
+- power: toma un numero y un natural, devolviendo el resultado de elevar el primero a la potencia del segundo.
+
+- prime: decide si el numero pasado es primo.
