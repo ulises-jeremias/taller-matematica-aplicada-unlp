@@ -399,4 +399,4 @@ Definir recursivamente las siguientes funciones:
 
 - power: toma un numero y un natural, devolviendo el resultado de elevar el primero a la potencia del segundo.
 
-- prime: decide si el numero pasado es primo.
+- nextDiv: toma dos número x y , y devuelve el primer divisor de y mayor que x
