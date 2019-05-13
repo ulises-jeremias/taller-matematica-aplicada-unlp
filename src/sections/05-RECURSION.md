@@ -57,6 +57,7 @@ En nuestro caso queremos utilizar reducciones para llegar al valor de un expresi
 
 ## ¿Cómo hacemos?
 
+Note: Mostar una reducción!!
 ----
 
 ### ¿Hasta donde lo hacemos?
@@ -80,6 +81,8 @@ seven inf
 -  Forma normal
 
 -  Formal aplicativa
+
+Note: Ejemplos de cada una
 
 ----
 
@@ -106,6 +109,7 @@ Para entender las decisiones de implementación del lenguaje vamos a definir uno
     2.  Reemplazarlo
     3.  Repetir hasta que la expresión esté en forma normal
 
+Note: esto puede ir antes para ver cómo se reduce
 ----
 
 -  Normalización
@@ -113,6 +117,7 @@ Para entender las decisiones de implementación del lenguaje vamos a definir uno
 -  Ordenes de reducción
     -  ¿Hay una única forma de reducir? ¿Son todas equivalentes?
 
+Note: Transparencia referencial. Referir a la definición de funcíon de matemática. Notar que tengo distintas funciones que también llegan al mismo valor
 ----
 
 ## Normalización
@@ -200,7 +205,7 @@ quin x = x + x + x + x + x
 <small>
     Sabemos que (fib 22) cuesta ~1.000.000 reducciones
 </small>
-
+Note: HAcer otro ejemplo más sencillo antes
 ----
 
 ```haskell
@@ -252,6 +257,8 @@ ones = 1:ones
 
 # Currificación
 
+Note: hablar de la diferencia entre (x, y) y pasar x y. ¿qué pasa con los tipos? rompe el tipo hacer suma x. Ésto tendría que darse en clases anteriores. Permite poder usar los temas de Geometría. Dar composición de matemática ?
+
 ----
 
 ```haskell
@@ -274,7 +281,7 @@ suma x y = x + y
 -  Necesita una función que no vamos a referenciar, tener un nombre??
 -  Si queremos devolver una función como valor de retorno
     -  Necesita estar previamente definida??
-
+Note: Idem currificación. debería ir antes
 ----
 
 ### Ejemplo
@@ -309,7 +316,7 @@ fib :: Int -> Int
 fib x = fibs !! x
 ```
 <!-- .element: contenteditable="true" style="font-size: 17px" -->
-
+Note: más fácil decir primero qué es recursión antes que ver la ventaja
 ----
 
 ```haskell
@@ -400,3 +407,5 @@ Definir recursivamente las siguientes funciones:
 - power: toma un numero y un natural, devolviendo el resultado de elevar el primero a la potencia del segundo.
 
 - nextDiv: toma dos número x y , y devuelve el primer divisor de y mayor que x
+
+Note: Dejar recursión para la misma clase que se dé inducción. Inducción es la forma segura de hacer recursión
