@@ -26,3 +26,7 @@ FILE: 04-CONJUNTOS.md
 ---
 
 FILE: 05-RECURSION.md
+
+---
+
+FILE: 06-INDUCCION.md
