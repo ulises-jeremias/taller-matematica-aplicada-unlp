@@ -1,48 +1,77 @@
+# Inducción
 
-En el apunte de Mate
->
-Tenemos 5 axiomas, de los que se destacan
--1 pertenece a N
--si x pertenece a N, x + 1 pertenece a N
--Dado un subconjunto A de N. Si a) 1 pertenece a N
-	                        b) si x pertenece a N, x+1 pertenece a N
-			     Entonces A = N
+----
+En los últimos encuentros estuvimos creando funciones recursivas, que como vimos nos pueden dar mucha potencia. Pero también vimos que puede haber problemas con ellas
+----
 
-Principio de Inducción se "Basa" en axioma inductivo: Cualquier subconjunto de los naturales que posea esas mismas propiedades (las inductivas) es necesariamente igual a N.
+fact 0 = 1
+fact n = n * fact (n - 1)
 
-Notar que ellos vienen hablando de un conjunto de Verdad, con respecto a una proposición dada. Entonces mostrando que el conjunto de verdad, es un conjunto inductivo, se concluye que el conjunto de verdad es N
+¿Siempre termina? <!-- .element: class="fragment" -->
+¿Podemos asegurarlo? <!-- .element: class="fragment" --> 
 
->
+----
 
-Del de Alcón tenemos
->
-Una relaciónde orden se dice un buen orden si todo subconjunto no vacío tiene primer elemento
+```haskell
+sumatoria f 0 = 0
+sumatoria f i = f 0 + (sumatoria f (i - 1)
 
-Principio de Ordenación. La relación <= es un buen orden en el conjunto de los número naturales: Todo subconjunto no vacío de N tiene primer elemento
+sumatoria' f 0 = 0
+sumatoria' f i = (sumatoria f (i - 1) + f 0
+```
 
-Principio de Induucción: El conjunto N es el menor subconjunto inductivo de R. Es decir si S está contenido en N y es inductivo, entonces es N
->
+¿Hacen lo mismo? ¿Cómo podemos decirlo?
 
-Del de Fidel
->
-Una definición inductiva de un conjunto **S** es una definición que consiste en una colección de reglas, dividadas en dos tipos
+----
 
--> Reglas base: aquellas que anuncian qué elementos pertenecen incondicionalmente al conjunto
+Usando Inducción, no sólo vamos a construir funciones recursivas sabiendo que terminan, si no que además vamos a poder decir un montón de propiedades más sobre ellas
 
--> Reglas inductivas: aquellas que dicen que un elemento dado está en el conjunto si otros elementos lo están. 
+----
+### Repaso Matemático
 
-Pertenecerán a S aquellos elementos de los que se pueda asegurar la pertenencia aplicando un número finito de veces las reglas
+En la teoía vieron un conjunto de axiomas, sobre los cuales basaron los fundamentos para hacer inducción. Uno de ellos decía lo siguiente:
 
->
+----
 
+Dado A, un subconjunto de N, si se cumple que:
+a) 1 pertenece a N
+b) cualquiera sea x, si x pertenece a A, entonces x + 1 pertence A
 
-Ejemplo de comparación:
-Demostración de que 
-p:=O;
-for i - 1 to y do
-p:=p+x
-endfor
+Entonces A = N
 
-computa x*y
+----
 
-Tanto para haskell como para imperativo podemos demostrar por inducción, pero al tener una memoria, no podemos asegurar nada
+Con ésto podían decir que si un conjunto de Verdad satisfacía éstas reglas, entonces ese conjunto de verdad era N ¿Qué tienen de especiales éstas reglas para permitir decir algo tan potente?
+
+----
+
+### Conjuntos inductivos
+
+Un conjunto se dice **inductivo**,o *definido* **inductivamente** si ésta definición es una colección de reglas que se separan en dos tipos
+
+-> Reglas Base: Anuncian qué elementos están *incondicionalemente* en el conjunto
+
+-> Reglas inductivas: Anuncian que un elemento está en el conjunto si otros lo están
+
+----
+
+### Ejemplo
+
+Definamos el conjunto **A** que está compuesto por todas las cadenas que tienen **n** caracteres *S*, y al final una*Z*. Pediremos el menor conjunto que satisfaga las siguientes reglas:
+
+- *Z* pertenece a **A** 
+<!-- .element: class="fragment" -->
+- si **e** pertenece a **A**, entonces *S***e** pertenece a **A**
+ <!-- .element: class="fragment" -->
+- **A** es el **menor** conjunto que satisface las reglas anteriores
+ <!-- .element: class="fragment" -->
+
+Note: hacer los dibujos de los posibles conjuntos **A**
+
+----
+
+Note: Hacer juntos la definición de Lista
+
+----
+
+Note: Dar la definición de función recursiva por inducción en la estructura
