@@ -1084,7 +1084,9 @@ La reducción es un _sistema de reescritura_. Se usa en distintos ámbitos, pero
 En nuestro caso queremos utilizar reducciones para llegar al valor de un expresión. En otras palabras, queremos **reducir** una *expresión* a su *valor*.
 </script></section><section data-markdown><script type="text/template">
 ## ¿Cómo hacemos?
-</script></section><section data-markdown><script type="text/template">
+
+<aside class="notes"><p>Mostar una reducción!!</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ### ¿Hasta donde lo hacemos?
 ## ¡¿Se reduce infinitamente?!
 </script></section><section data-markdown><script type="text/template">
@@ -1102,7 +1104,9 @@ seven inf
 -  Forma normal
 
 -  Formal aplicativa
-</script></section><section data-markdown><script type="text/template">
+
+<aside class="notes"><p>Ejemplos de cada una</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ## ¿Cual tiene haskell?
 
 Ninguna de las anteriores <!-- .element: class="fragment" -->
@@ -1121,12 +1125,16 @@ Para entender las decisiones de implementación del lenguaje vamos a definir uno
     1.  Localizar un redex
     2.  Reemplazarlo
     3.  Repetir hasta que la expresión esté en forma normal
-</script></section><section data-markdown><script type="text/template">
+
+<aside class="notes"><p>esto puede ir antes para ver cómo se reduce</p>
+</aside></script></section><section data-markdown><script type="text/template">
 -  Normalización
 -  ¿La forma normal es única?
 -  Ordenes de reducción
     -  ¿Hay una única forma de reducir? ¿Son todas equivalentes?
-</script></section><section data-markdown><script type="text/template">
+
+<aside class="notes"><p>Transparencia referencial. Referir a la definición de funcíon de matemática. Notar que tengo distintas funciones que también llegan al mismo valor</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ## Normalización
 
 -  Forma normal
@@ -1196,7 +1204,8 @@ quin x = x + x + x + x + x
 <small>
     Sabemos que (fib 22) cuesta ~1.000.000 reducciones
 </small>
-</script></section><section data-markdown><script type="text/template">
+<aside class="notes"><p>HAcer otro ejemplo más sencillo antes</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ```haskell
 -- cuantas reducciones?
 quin (fib 22)
@@ -1233,7 +1242,9 @@ ones = 1:ones
 <!-- .element: contenteditable="true" -->
 </script></section><section data-markdown><script type="text/template">
 # Currificación
-</script></section><section data-markdown><script type="text/template">
+
+<aside class="notes"><p>hablar de la diferencia entre (x, y) y pasar x y. ¿qué pasa con los tipos? rompe el tipo hacer suma x. Ésto tendría que darse en clases anteriores. Permite poder usar los temas de Geometría. Dar composición de matemática ?</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ```haskell
 inc :: Int -> Int
 inc x = 1 + x
@@ -1250,7 +1261,8 @@ suma x y = x + y
 -  Necesita una función que no vamos a referenciar, tener un nombre??
 -  Si queremos devolver una función como valor de retorno
     -  Necesita estar previamente definida??
-</script></section><section data-markdown><script type="text/template">
+<aside class="notes"><p>Idem currificación. debería ir antes</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ### Ejemplo
 
 ```haskell
@@ -1277,7 +1289,8 @@ fib :: Int -> Int
 fib x = fibs !! x
 ```
 <!-- .element: contenteditable="true" style="font-size: 17px" -->
-</script></section><section data-markdown><script type="text/template">
+<aside class="notes"><p>más fácil decir primero qué es recursión antes que ver la ventaja</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ```haskell
 -- Analizar
 fibs' a b = a:fibs' b (a+b)
@@ -1318,11 +1331,14 @@ fib n = fib (n-1) + fib (n-2)
     ```
 
   - ```haskell
-    head [x | x <- [1..], x esPar]
+    esPar :: Int -> Bool
+    -- esPar x = ...
+
+    head [x | x <- [1..], esPar x]
     ```
 
   - ```haskell
-    min ([0] ++ [1..])
+    minimum ([0] ++ [1..])
     ```</script></section><section data-markdown><script type="text/template">
 <!-- .slide: style="text-align: left" -->
 
@@ -1335,9 +1351,11 @@ fib n = fib (n-1) + fib (n-2)
   - ```haskell
     inc x = x + 1
     ```
+
   - ```haskell
     apply f x = f x
     ```
+  
   - ```haskell
     -- función que permite pasar los parametros al reves
     flip f x y = f y x
@@ -1354,6 +1372,260 @@ Definir recursivamente las siguientes funciones:
 - power: toma un numero y un natural, devolviendo el resultado de elevar el primero a la potencia del segundo.
 
 - nextDiv: toma dos número x y , y devuelve el primer divisor de y mayor que x
+
+<aside class="notes"><p>Dejar recursión para la misma clase que se dé inducción. Inducción es la forma segura de hacer recursión.</p>
+</aside></script></section></section><section ><section data-markdown><script type="text/template">
+# Inducción
+</script></section><section data-markdown><script type="text/template">
+En los últimos encuentros estuvimos creando funciones recursivas que nos pueden dar mucha potencia. Pero también vimos que pueden existir problemas con ellas.
+</script></section><section data-markdown><script type="text/template">
+**Ejemplo**
+
+```haskell
+fact 0 = 1
+fact n = n * fact (n - 1)
+```
+
+-  ¿Siempre termina? <!-- .element: class="fragment" -->
+-  ¿Como podemos asegurarlo? <!-- .element: class="fragment" --> 
+
+<aside class="notes"><p>¿QUÉ PREGUNTAS SURGEN SOBRE ELLA? ¿CUÁL ES LA PESADILLA?</p>
+</aside></script></section><section data-markdown><script type="text/template">
+**Ejemplo**
+
+```haskell
+sumatoria f 0 = 0
+sumatoria f i = f 0 + (sumatoria f (i - 1))
+
+sumatoria' f 0 = 0
+sumatoria' f i = (sumatoria f (i - 1)) + (f 0)
+```
+
+-  ¿Hacen lo mismo? <!-- .element: class="fragment" -->
+-  ¿Cómo podemos decirlo? <!-- .element: class="fragment" -->
+
+<aside class="notes"><p>¿QUÉ NOS ENCANTARÍA DECIR DE ESTAS DOS FUNCIONES?</p>
+</aside></script></section><section data-markdown><script type="text/template">
+Usando **Inducción** no sólo vamos a construir funciones recursivas _**sabiendo**_ que terminan, si no que además vamos a poder decir un montón de propiedades más sobre ellas.
+</script></section><section data-markdown><script type="text/template">
+### Definición Matemática
+## Repaso
+
+<aside class="notes"><p>USTEDES VIERON INDUCCIÓN CON EL FIN DE HACER CIERTAS DEMOSTRACIONES SOBRE LOS NUMEROS NATURALES</p>
+</aside></script></section><section data-markdown><script type="text/template">
+En la teoría vieron un conjunto de axiomas, sobre los cuales se basan los fundamentos para hacer inducción. Uno de ellos es el siguiente:
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+### Axioma Inductivo
+
+Sea $A \subseteq \mathbb{N}$, si se cumple que:
+
+-  $1 \in A$
+-  Cualquiera sea $x$, si $x \in A$, entonces $x + 1 \in A$
+
+Entonces $A = \mathbb{N}$
+
+<aside class="notes"><p>Hablar del conjunto de Verdad V(P) asociado a un p(n)</p>
+</aside></script></section><section data-markdown><script type="text/template">
+Con ésto se puede decir que si un conjunto de _Verdad_ satisface éstas reglas, entonces ese conjunto de verdad es $\mathbb{N}$. Pero, _¿Qué tienen de especiales éstas reglas para permitir decir algo tan fuerte?_
+
+<aside class="notes"><p>aclarar que vamos a mirar estas reglas de otra manera</p>
+</aside></script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+### Conjuntos Inductivos
+
+Un conjunto se dice **Inductivo**, o *definido* **inductivamente**, si se define en base a una colección de reglas que se separan en dos tipos:
+
+- **Reglas Base** Anuncian qué elementos están *incondicionalemente* en el conjunto.
+
+- **Reglas Inductivas** Anuncian que un elemento está en el conjunto si otros lo están.
+
+<aside class="notes"><p>Es una forma más de definir conjuntos. Así como estaba por extensión y por comprensión, está ésta forma. Notar que pueden haber varias de cada una</p>
+</aside></script></section><section data-markdown><script type="text/template">
+### Ejemplo
+
+Definamos el conjunto $\mathcal{A}$ que está compuesto por todas las cadenas que tienen **n** caracteres *S*, y al final una *Z*. Pediremos el conjunto que satisfaga las siguientes reglas:
+
+- *Z* $\in \mathcal{A}$.
+ <!-- .element: class="fragment" -->
+
+- Si **e** $\in \mathcal{A}$, entonces S**e** $\in \mathcal{A}$.
+ <!-- .element: class="fragment" -->
+
+- $\mathcal{A}$ es el **menor** (con la relación de inclusión) conjunto que satisface las reglas anteriores.
+ <!-- .element: class="fragment" -->
+
+<aside class="notes"><p>hacer los dibujos de los posibles conjuntos $\mathcal{A}$</p>
+</aside></script></section><section data-markdown><script type="text/template">
+¿Qué propiedades tiene éste conjunto?
+
+Tiene infinitos elementos 
+<!-- .element: class="fragment" -->
+
+Todos sus elementos satisfacen una u otra de las reglas
+<!-- .element: class="fragment" -->
+
+Todos sus elementos son finitos
+<!-- .element: class="fragment" -->
+</script></section><section data-markdown><script type="text/template">
+Otra propiedad a destacar es: Todo elemento $w \in \mathcal{A}$ se forma a partir de otra cadena $w'$, y una cadena de elementos ordenados de ésta forma siempre termina
+
+En el caso anterior, _Z_ es parte de _SZ_ es parte de _SSZ_ es parte de _SSSZ_.
+<!-- .element: class="fragment" -->
+
+Cualquier cadena de ésta forma, termina en Z.
+<!-- .element: class="fragment" -->
+
+<aside class="notes"><p>Bueno genial ¿y con ésto qué? ¿Qué significa ésto? ¿Qué es éste conjunto? Nada, es pura sintaxis.</p>
+</aside></script></section><section data-markdown><script type="text/template">
+### Ejemplo
+# Listas
+</script></section><section data-markdown><script type="text/template">
+Dado un tipo cualquier **a**, definimos inductivamente el conjunto `[a]` con las siguientes reglas:
+
+-  _[] :: [a]_
+<!-- .element: class="fragment" -->
+
+-  si _x :: a_ y _xs :: [a]_ entonces _x:xs :: [a]_
+<!-- .element: class="fragment" -->
+</script></section><section data-markdown><script type="text/template">
+```haskell
+len :: [a] -> Int
+len [] = ...
+len (x:xs) = ... len xs ...
+```
+</script></section><section data-markdown><script type="text/template">
+```haskell
+len :: [a] -> Int
+len [] = 0
+len (x:xs) = 1 + len xs
+```
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+### Observaciones
+
+-  Hay una ecuación por cada caso de la definición de [a]
+-  Los paréntesis son necesarios; si no dice (len x):xs
+-  La función `len` está definida para toda lista (siempre termina y da un valor definido). Esta propiedad está garantizada por la construcción de `len`, y por la naturaleza inductiva de las listas.
+-  Se pueden demostrar propiedades de `len` por inducción estructural en la lista argumento.
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+## Propiedad
+
+Demostrar que para toda lista xs, su longitud es mayor o igual que cero.
+</script></section><section data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+## Demostracion
+
+**_Por inducción en la estructura de xs_**
+
+-  **Caso base**: xs = [ ], P([])
+
+```
+len [] = 0 [por def. de len], por lo tanto, len [] ≥ 0
+```
+
+-  **Caso inductivo**: xs = x:xs', P(xs') $\rightarrow$ P(x:xs')
+
+**HI)** Asumimos len xs' ≥ 0 , (hipótesis inductiva).
+
+```
+len (x:xs')
+= [por def. de len]
+1 + len xs' 
+≥ [por HI y aritmética]
+1 ≥ 0
+```
+</script></section><section data-markdown><script type="text/template">
+## Siguiente clase!
+</script></section><section data-markdown><script type="text/template">
+Definamos las listas de enteros
+
+<aside class="notes"><p>Hacer juntos la definición de Lista.</p>
+</aside></script></section><section data-markdown><script type="text/template">
+```haskell
+data List a = [] | a:(List a)
+```</script></section><section data-markdown><script type="text/template">
+¡Haskell nos permite definir estructuras inductivas! Y tiene una sintaxis muy sencilla
+
+```haskell
+data Inductivo = ReglaBase1 Int
+               | ReglaBase2 Bool
+               |
+               | ReglaBasen Constructor
+               | ReglaInductiva1 Inductivo
+               | ReglaInductiva2 Inductivo Inductivo 
+               |
+               | Reglainductivan Inductivo ... 
+```
+<!-- .element: class="fragment" --></script></section><section data-markdown><script type="text/template">
+Definamos el conjunto de programas imperativos 
+
+De un lenguaje muy sencillo
+<!-- .element: class="fragment" -->
+</script></section><section data-markdown><script type="text/template">
+```haskell
+data Variable = String
+data ExpA = Cte Int
+          | Sum ExpA ExpA
+data Exp = Vble Variable
+         | ExpA
+
+data Comando = Skip
+	     | Assign Variable Exp
+	     | if Bool Bloque Bloque
+
+data Bloque = [Comando]
+```</script></section><section data-markdown><script type="text/template">
+### Funciones recursivas
+</script></section><section data-markdown><script type="text/template">
+Dijimos que la inducción nos iba a permitir definir funciones recursivas. Lo que se hace en realidad, es definir funciones recursivas **en la estructura** de un conjunto definido inductivamente
+</script></section><section data-markdown><script type="text/template">Sea S un conjunto definido inductivamente y T un conjunto cualquiera la función $f$ :: $S$ -> $T$ ,  se define $f$:
+
+Por cada elemento base $z$ se define el valor de f $z$ directamente.
+<!-- .element: class="fragment" -->
+
+Por cada elemento inductivo $y$ con partes inductivas $y_1$, $y_2$, ... , $y_n$ el valor de f $y$ se da usando valores previamente definidos y los valores de (f $y_1$) , (f $y_2$), ... (f $y_n$).
+<!-- .element: class="fragment" -->
+</script></section><section data-markdown><script type="text/template">
+### Ejemplo
+
+Definamos una función que permita llevar una expresión de tipo ExpA a su valor en Int ¿Cómo está definido ExpA?
+</script></section><section data-markdown><script type="text/template">
+### A Analizar
+
+Dado el conjunto de los número pares, definido inductivamente (¿Cómo?). Sea la función
+```haskell
+cuantoPor2 :: Int -> Int
+cuantoPor2 2 = 1
+cuandoPor2 n = 1 + (cuantoPor2 (n - 2))
+```
+<!-- .element: contenteditable="true" -->
+_¿Cuánto vale cuantoPor2 15?_ _¿Cuál debería ser el dominio de cuantoPor2?_
+
+Sistema de Tipos, en ti confiamos
+<!-- .element: class="fragment" --></script></section><section data-markdown><script type="text/template">
+### Practica
+
+Definir las siguientes funciones sobre listas
+
+- any, devuelve True si algún elemento de una lista es True.
+
+- squares, dada una lista de números, devuelve la lista de sus cuadrados.
+
+- order, dada una lista de pares ordenados de números, devuelve la lista de aquellos
+cuya primer componente es menor que el triple de la segunda.
+
+- moreThan, dada una lista de listas xss y un número n, devuelve la lista de aquellas
+listas de xss que tienen longitud mayor que n.
+</script></section><section data-markdown><script type="text/template">
+Definir el conjunto de Expresiones booleanas (con and y not alcanza). Construir la función necesaria para evaluar.	
+
 </script></section></section></div>
     </div>
 
