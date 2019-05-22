@@ -367,11 +367,14 @@ fib n = fib (n-1) + fib (n-2)
     ```
 
   - ```haskell
-    head [x | x <- [1..], x esPar]
+    esPar :: Int -> Bool
+    -- esPar x = ...
+
+    head [x | x <- [1..], esPar x]
     ```
 
   - ```haskell
-    min ([0] ++ [1..])
+    minimum ([0] ++ [1..])
     ```
 ----
 
@@ -386,9 +389,11 @@ fib n = fib (n-1) + fib (n-2)
   - ```haskell
     inc x = x + 1
     ```
+
   - ```haskell
     apply f x = f x
     ```
+  
   - ```haskell
     -- función que permite pasar los parametros al reves
     flip f x y = f y x
@@ -408,4 +413,4 @@ Definir recursivamente las siguientes funciones:
 
 - nextDiv: toma dos número x y , y devuelve el primer divisor de y mayor que x
 
-Note: Dejar recursión para la misma clase que se dé inducción. Inducción es la forma segura de hacer recursión
+Note: Dejar recursión para la misma clase que se dé inducción. Inducción es la forma segura de hacer recursión.
