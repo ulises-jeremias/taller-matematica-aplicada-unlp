@@ -17,13 +17,14 @@ fact n = n * fact (n - 1)
 -  ¿Como podemos asegurarlo? <!-- .element: class="fragment" --> 
 
 Note: ¿QUÉ PREGUNTAS SURGEN SOBRE ELLA? ¿CUÁL ES LA PESADILLA?
+
 ----
 
 **Ejemplo**
 
 ```haskell
 sumatoria f 0 = 0
-sumatoria f i = f 0 + (sumatoria f (i - 1)
+sumatoria f i = f 0 + (sumatoria f (i - 1))
 
 sumatoria' f 0 = 0
 sumatoria' f i = (sumatoria f (i - 1)) + (f 0)
@@ -33,6 +34,7 @@ sumatoria' f i = (sumatoria f (i - 1)) + (f 0)
 -  ¿Cómo podemos decirlo? <!-- .element: class="fragment" -->
 
 Note: ¿QUÉ NOS ENCANTARÍA DECIR DE ESTAS DOS FUNCIONES?
+
 ----
 
 Usando **Inducción** no sólo vamos a construir funciones recursivas _**sabiendo**_ que terminan, si no que además vamos a poder decir un montón de propiedades más sobre ellas.
@@ -43,9 +45,10 @@ Usando **Inducción** no sólo vamos a construir funciones recursivas _**sabiend
 ## Repaso
 
 Note: USTEDES VIERON INDUCCIÓN CON EL FIN DE HACER CIERTAS DEMOSTRACIONES SOBRE LOS NUMEROS NATURALES
+
 ----
 
-En la teoría vieron un conjunto de axiomas, sobre los cuales se basan los fundamentos para hacer inducción. Uno de ellos es el siguiente
+En la teoría vieron un conjunto de axiomas, sobre los cuales se basan los fundamentos para hacer inducción. Uno de ellos es el siguiente:
 
 ----
 
@@ -114,13 +117,93 @@ Todos sus elementos son finitos
 
 Otra propiedad a destacar es: Todo elemento $w \in \mathcal{A}$ se forma a partir de otra cadena $w'$, y una cadena de elementos ordenados de ésta forma siempre termina
 
-En el caso anterior, SSSZ _es parte de_ SSZ _es parte de_ SZ _es parte de_ Z
+En el caso anterior, _Z_ es parte de _SZ_ es parte de _SSZ_ es parte de _SSSZ_.
 <!-- .element: class="fragment" -->
 
 Cualquier cadena de ésta forma, termina en Z.
 <!-- .element: class="fragment" -->
 
-Note: Bueno genial ¿y con ésto qué? ¿Qué significa ésto? ¿Qué es éste conjunto? Nada, es pura sintaxis
+Note: Bueno genial ¿y con ésto qué? ¿Qué significa ésto? ¿Qué es éste conjunto? Nada, es pura sintaxis.
+
+----
+
+### Ejemplo
+# Listas
+
+----
+
+Dado un tipo cualquier **a**, definimos inductivamente el conjunto `[a]` con las siguientes reglas:
+
+-  _[] :: [a]_
+<!-- .element: class="fragment" -->
+
+-  si _x :: a_ y _xs :: [a]_ entonces _x:xs :: [a]_
+<!-- .element: class="fragment" -->
+
+----
+
+```haskell
+len :: [a] -> Int
+len [] = ...
+len (x:xs) = ... len xs ...
+```
+
+----
+
+```haskell
+len :: [a] -> Int
+len [] = 0
+len (x:xs) = 1 + len xs
+```
+
+----
+
+<!-- .slide: style="text-align: left" -->
+
+### Observaciones
+
+-  Hay una ecuación por cada caso de la definición de [a]
+-  Los paréntesis son necesarios; si no dice (len x):xs
+-  La función `len` está definida para toda lista (siempre termina y da un valor definido). Esta propiedad está garantizada por la construcción de `len`, y por la naturaleza inductiva de las listas.
+-  Se pueden demostrar propiedades de `len` por inducción estructural en la lista argumento.
+
+----
+
+<!-- .slide: style="text-align: left" -->
+
+## Propiedad
+
+Demostrar que para toda lista xs, su longitud es mayor o igual que cero.
+
+----
+
+<!-- .slide: style="text-align: left" -->
+
+## Demostracion
+
+**_Por inducción en la estructura de xs_**
+
+-  **Caso base**: xs = [ ], P([])
+
+```
+len [] = 0 [por def. de len], por lo tanto, len [] ≥ 0
+```
+
+-  **Caso inductivo**: xs = x:xs', P(xs') $\rightarrow$ P(x:xs')
+
+**HI)** Asumimos len xs' ≥ 0 , (hipótesis inductiva).
+
+```
+len (x:xs')
+= [por def. de len]
+1 + len xs' 
+≥ [por HI y aritmética]
+1 ≥ 0
+```
+
+----
+
+## Siguiente clase!
 
 ----
 
@@ -131,8 +214,7 @@ Note: Hacer juntos la definición de Lista.
 ----
 
 ```haskell
-data List a = []
-            | a:(List a)
+data List a = [] | a:(List a)
 ```
 ----
 
@@ -210,6 +292,7 @@ _¿Cuánto vale cuantoPor2 15?_ _¿Cuál debería ser el dominio de cuantoPor2?_
 Sistema de Tipos, en ti confiamos
 <!-- .element: class="fragment" -->
 ----
+
 ### Practica
 
 Definir las siguientes funciones sobre listas
