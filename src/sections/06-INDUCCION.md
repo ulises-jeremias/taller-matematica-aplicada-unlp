@@ -207,90 +207,187 @@ len (x:xs')
 
 ----
 
-Definamos las listas de enteros
+# Tipos de Datos
 
-Note: Hacer juntos la definición de Lista. 
+----
+
+<!-- .slide: style="text-align: left" -->
+
+### Para definir un tipo de datos podemos:
+
+establecer qué forma tendrá cada elemento, y dar un mecanismo único para inspeccionar cada
+elemento entonces: **_TIPO ALGEBRAICO_** <br />ó<br /> determinar cuáles serán las operaciones que
+manipularán los elementos, SIN decir cuál será la forma exacta de éstos o aquéllas
+entonces: **_TIPO ABSTRACTO_**
+
+----
+
+<!-- .slide: style="text-align: left" -->
+
+**Tipos Algebraicos**
+
+- dar la forma de los elementos
+- dar un mecanismo único de acceso
+
+**Tipos Abstractos**
+
+- dar sólo las operaciones
+- NO dar la forma de elementos ni operaciones
+
+----
+
+<!-- .slide: style="text-align: left" -->
+
+**Tipos predefinidos**
+
+- a->b: tipo abstracto con sintaxis especial
+- Bool, (a,b): tipos algebraicos con sintaxis especial
+- Int, Float, Char: tipos abstractos con componentes
+algebraicos y sintaxis especial
+
+----
+
+# Tipos Algebraicos
+
+----
+
+**¿Cómo damos en Haskell la forma de un
+elemento de un tipo algebraico?**
+
+Mediante **constantes** llamadas _constructores_.
+
+----
+
+## Constructores
+
+- nombres con mayúsculas
+- no tienen asociada una regla de reducción
+- pueden tener argumentos
+
+```haskell
+False :: Bool
+True :: Bool
+```
+
+----
+
+_La cláusula **data**_
+
+- introduce un nuevo tipo algebraico
+- introduce los nombres de los constructores
+- define los tipos de los argumentos de los constructores
+
+**Ejemplos:**
+
+```haskell
+data SensacionTermica = HaceFrio | HaceCalor
+data Shape = Circle Float | Rect Float Float
+```
 
 ----
 
 ```haskell
-data List a = [] | a:(List a)
+data Shape = Circle Float | Rect Float Float
+
+-- Ejemplos de elementos:
+c1 = Circle 1.0
+c2 = Circle (4.0-3.0)
+r1 = Rect 2.5 3.0
+
+-- Ejemplos de funciones que arman Shapes:
+circuloPositivo x = Circle (abs x)
+cuadrado x = Rect x x
 ```
+
 ----
 
-¡Haskell nos permite definir estructuras inductivas! Y tiene una sintaxis muy sencilla
+**¿Cuál es el mecanismo único de acceso?**
+
+**Pattern matching (correspondencia de patrones (?))**
+
+- Pattern: expresión especial
+  - sólo con constructores y variables sin repetir
+  - argumento en el lado izquierdo de una ecuación
+
+- Matching: operación asociada a un pattern
+  - inspecciona el valor de una expresión 
+  - puede fallar o tener éxito
+  - si tiene éxito, liga las variables del pattern
+
+----
 
 ```haskell
-data Inductivo = ReglaBase1 Int
-               | ReglaBase2 Bool
-               |
-               | ReglaBasen Constructor
-               | ReglaInductiva1 Inductivo
-               | ReglaInductiva2 Inductivo Inductivo 
-               |
-               | Reglainductivan Inductivo ... 
+area :: Shape -> Float
+area (Circle radio) = pi * radio^2
+area (Rect base altura) = base * altura
+
+isCircle :: Shape -> Bool
+--isCircle1 (Circle radio) = True
+--isCircle1 (Rectangle base altura) = False
+isCircle (Circle _) = True
+isCircle _ = False
 ```
-<!-- .element: class="fragment" -->
+
 ----
 
-Definamos el conjunto de programas imperativos 
+<!-- .slide: style="text-align: left" -->
 
-De un lenguaje muy sencillo
-<!-- .element: class="fragment" -->
+### Tipos Algebraicos
+
+**Podemos clasificarlos en:**
+
+- **Enumerativos** (SensacionTermica, Bool)
+  - Sólo constructores sin argumentos
+- **Productos** (Complex, Tuplas, registros)
+  - Un único constructor con varios argumentos
+- **Sumas** (Shape, Maybe, Either, Helado)
+  - Varios constructores con argumentos
+- **Recursivos** (Listas, árboles)
+  - Utilizan el tipo definido como argumento
+
+----
+
+## Tipos Recursivos
+
+**Un tipo algebraico recursivo**
+
+- tiene al menos uno de los constructores con el tipo que se define como argumento
+- es la concreción en Haskell de un conjunto definido inductivamente
+
+----
+
+## Ejemplos?
 
 ----
 
 ```haskell
-data Variable = String
-data ExpA = Cte Int
-          | Sum ExpA ExpA
-data Exp = Vble Variable
-         | ExpA
-
-data Comando = Skip
-	     | Assign Variable Exp
-	     | if Bool Bloque Bloque
-
-data Bloque = [Comando]
+data Nat = Zero | Succ Nat
 ```
-----
-
-### Funciones recursivas
 
 ----
 
-Dijimos que la inducción nos iba a permitir definir funciones recursivas. Lo que se hace en realidad, es definir funciones recursivas **en la estructura** de un conjunto definido inductivamente
-
-----
-Sea S un conjunto definido inductivamente y T un conjunto cualquiera la función $f$ :: $S$ -> $T$ ,  se define $f$:
-
-Por cada elemento base $z$ se define el valor de f $z$ directamente.
-<!-- .element: class="fragment" -->
-
-Por cada elemento inductivo $y$ con partes inductivas $y_1$, $y_2$, ... , $y_n$ el valor de f $y$ se da usando valores previamente definidos y los valores de (f $y_1$) , (f $y_2$), ... (f $y_n$).
-<!-- .element: class="fragment" -->
-
-----
-
-### Ejemplo
-
-Definamos una función que permita llevar una expresión de tipo ExpA a su valor en Int ¿Cómo está definido ExpA?
-
-----
-
-### A Analizar
-
-Dado el conjunto de los número pares, definido inductivamente (¿Cómo?). Sea la función
 ```haskell
-cuantoPor2 :: Int -> Int
-cuantoPor2 2 = 1
-cuandoPor2 n = 1 + (cuantoPor2 (n - 2))
+evalN :: Nat -> Int
+evalN Zero = ...
+evalN (Succ x) = ... evalN x ...
 ```
-<!-- .element: contenteditable="true" -->
-_¿Cuánto vale cuantoPor2 15?_ _¿Cuál debería ser el dominio de cuantoPor2?_
 
-Sistema de Tipos, en ti confiamos
-<!-- .element: class="fragment" -->
+----
+
+```haskell
+evalN :: Nat -> Int
+evalN Zero = 0
+evalN (Succ x) = 1 + evalN x
+```
+
+----
+
+```haskell
+addN :: Nat -> Nat -> Nat
+addN Zero m = m
+addN (Succ n) m = Succ (addN n m)
+```
+
 ----
 
 ### Practica
@@ -303,6 +400,8 @@ Definir las siguientes funciones sobre listas
 
 - order, dada una lista de pares ordenados de números, devuelve la lista de aquellos
 cuya primer componente es menor que el triple de la segunda.
+
+----
 
 - moreThan, dada una lista de listas xss y un número n, devuelve la lista de aquellas
 listas de xss que tienen longitud mayor que n.
