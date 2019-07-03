@@ -30,3 +30,7 @@ FILE: 05-RECURSION.md
 ---
 
 FILE: 06-INDUCCION.md
+
+---
+
+FILE: 07-ESQUEMAS.md
